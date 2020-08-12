@@ -94,4 +94,45 @@ public class JavaStepDefs {
             System.out.println("i less than d!");
         }
     }
+
+    @And("I print if number {int} is positive")
+    public void iPrintIfNumberIsPositive(int num) {
+        if (num == 0){
+            System.out.println("Number " + num + " is not negative and not positive");
+        } else if (num > 0) {
+            System.out.println("Number " + num + " is positive");
+        } else {
+            System.out.println("Number " + num + " is negative");
+        }
+    }
+
+
+    @And("I print {int} th day of week")
+    public void iPrintThDayOfWeek(int day) {
+        switch (day) {
+            case 1:
+                System.out.println(day + " th day of week is Monday");
+                break;
+            case 2:
+                System.out.println(day + " th day of week is Tuesday");
+                break;
+            case 3:
+                System.out.println(day + " th day of week is Wednesday");
+                break;
+            case 4:
+                System.out.println(day + " th day of week is Thursday");
+                break;
+            case 5:
+                System.out.println(day + " th day of week is Friday");
+                break;
+            case 6:
+                System.out.println(day + " th day of week is Saturday");
+                break;
+            case 7:
+                System.out.println(day + " th day of week is Sunday");
+                break;
+            default:
+                System.out.println("Incorrect number of day: " + day);
+        }
+    }
 }

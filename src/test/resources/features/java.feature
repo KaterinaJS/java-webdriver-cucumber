@@ -8,6 +8,8 @@
       And I perform actions with "var1" and "Var2"
       And I calculate numbers
       And I work with arrays
+      And I print if number 35 is positive
+      And I print 7 th day of week
 
     @java2
     Scenario: Actions with two strings
