@@ -7,6 +7,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Keys;
 import support.TestContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,7 +28,7 @@ public class MarketStepDefs {
 
     }
 
-    @And("I print page details")
+    @When("I print page details")
     public void iPrintPageDetails() {
         System.out.println(getDriver().getTitle());
         System.out.println(getDriver().getCurrentUrl());
@@ -64,6 +65,15 @@ public class MarketStepDefs {
     @Then("I verify required fields")
     public void iVerifyRequiredFields() {
         String username = getDriver().findElement(By.xpath("//b[@name='username']")).getText();
+        assertThat(username.equals("JS"));
+        String email = getDriver().findElement(By.xpath("//b[@name='email']")).getText();
+        assertThat(email.equals("john@smith.example.com"));
+        String password = getDriver().findElement(By.xpath("//b[@name='password']")).getText();
+        assertThat(password).doesNotContain("12345");
+        String name = getDriver().findElement(By.xpath("//b[@name='name']")).getText();
+        assertThat(name.equals("John Bob Smith"));
+        String agreedToPolicy = getDriver().findElement(By.xpath("//b[@name='agreedToPrivacyPolicy']")).getText();
+        assertThat(agreedToPolicy.equals("true"));
 
     }
 
@@ -83,18 +93,16 @@ public class MarketStepDefs {
         }
     }
 
-    @When("I verify email field behavior")
+    @Then("I verify email field behavior")
     public void iVerifyEmailFieldBehavior() {
         getDriver().findElement(By.xpath("//input[@name='email']")).clear();
         getDriver().findElement(By.xpath("//input[@name='email']")).sendKeys("john@smith.example.com.");
-        String email = getDriver().findElement(By.xpath("//input[@name='email']")).getAttribute("value");
         getDriver().findElement(By.xpath("//input[@id='password']")).click();
         getDriver().findElement(By.xpath("//label[@id='email-error']")).isDisplayed();
-        System.out.println(email);
-        String removeChar = email.substring(1);
-        System.out.println(removeChar);
+        getDriver().findElement(By.xpath("//input[@name='email']")).sendKeys(Keys.BACK_SPACE);
         getDriver().findElement(By.xpath("//input[@name='email']")).clear();
         getDriver().findElement(By.xpath("//input[@name='email']")).sendKeys("john@smith.example.com");
         assertThat(getDriver().findElement(By.xpath("//label[@id='email-error']")).isDisplayed()).isFalse();
+        getDriver().findElement(By.xpath("//input[@name='email']")).clear();
     }
 }
