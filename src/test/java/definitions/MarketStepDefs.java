@@ -121,4 +121,24 @@ public class MarketStepDefs {
         getDriver().findElement(By.xpath("//button[@id='thirdPartyButton']")).click();
         getDriver().switchTo().alert().accept();
     }
+
+    @And("I verify optional fields")
+    public void iVerifyOptionalFields() {
+        String gender = getDriver().findElement(By.xpath("//b[@name='gender']")).getText();
+        assertThat(gender.equals("male"));
+        String dOB = getDriver().findElement(By.xpath("//b[@name='dateOfBirth']")).getText();
+        assertThat(dOB.equals("04/12/1980"));
+        String agreement = getDriver().findElement(By.xpath("//b[@name='thirdPartyAgreement']")).getText();
+        assertThat(agreement.equals("accepted"));
+        String phone = getDriver().findElement(By.xpath("//b[@name='phone']")).getText();
+        assertThat(phone.equals("1234567890"));
+        String allowToContact = getDriver().findElement(By.xpath("//b[@name='allowedToContact']")).getText();
+        assertThat(allowToContact.equals("true"));
+        String country = getDriver().findElement(By.xpath("//b[@name='countryOfOrigin']")).getText();
+        assertThat(country.equals("Canada"));
+        String address = getDriver().findElement(By.xpath("//b[@name='address']")).getText();
+        assertThat(address.equals("1020 Main Str., Palo Alto, CA"));
+        String car = getDriver().findElement(By.xpath("//b[@name='carMake']")).getText();
+        assertThat(car.equals("Toyota"));
+    }
 }

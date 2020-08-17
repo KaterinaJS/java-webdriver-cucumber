@@ -219,6 +219,7 @@ Feature: Smoke steps
     And I click on element with xpath "//input[@name='agreedToPrivacyPolicy']"
     And I click on element with xpath "//button[@id='formSubmit']"
     Then element with xpath "//div[@id='quotePageResult']" should be displayed
+
     And element with xpath "//b[@name='agreedToPrivacyPolicy']" should have text as "true"
     And element with xpath "//b[@name='gender']" should have text as "male"
     And element with xpath "//b[@name='dateOfBirth']" should have text as "04/12/1980"

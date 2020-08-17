@@ -21,5 +21,6 @@ Feature: Marketing test suite
     And I fill out optional fields
     And I submit the form
     Then I verify required fields
+    And I verify optional fields
 
 
