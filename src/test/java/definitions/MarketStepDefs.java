@@ -1,5 +1,6 @@
 package definitions;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -8,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import support.TestContext;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class MarketStepDefs {
@@ -84,5 +86,15 @@ public class MarketStepDefs {
     @When("I verify email field behavior")
     public void iVerifyEmailFieldBehavior() {
         getDriver().findElement(By.xpath("//input[@name='email']")).clear();
+        getDriver().findElement(By.xpath("//input[@name='email']")).sendKeys("john@smith.example.com.");
+        String email = getDriver().findElement(By.xpath("//input[@name='email']")).getAttribute("value");
+        getDriver().findElement(By.xpath("//input[@id='password']")).click();
+        getDriver().findElement(By.xpath("//label[@id='email-error']")).isDisplayed();
+        System.out.println(email);
+        String removeChar = email.substring(1);
+        System.out.println(removeChar);
+        getDriver().findElement(By.xpath("//input[@name='email']")).clear();
+        getDriver().findElement(By.xpath("//input[@name='email']")).sendKeys("john@smith.example.com");
+        assertThat(getDriver().findElement(By.xpath("//label[@id='email-error']")).isDisplayed()).isFalse();
     }
 }
