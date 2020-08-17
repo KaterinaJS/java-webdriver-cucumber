@@ -13,10 +13,13 @@ Feature: Marketing test suite
 
 
   @market2
-  Scenario: Required fields for quote
+  Scenario: Required and optional fields for quote
     Given I go to "quote" page
     When I print page details
     Then I verify email field behavior
     When I fill out required fields
+    And I fill out optional fields
     And I submit the form
     Then I verify required fields
+
+

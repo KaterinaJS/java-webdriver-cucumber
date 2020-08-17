@@ -105,4 +105,20 @@ public class MarketStepDefs {
         assertThat(getDriver().findElement(By.xpath("//label[@id='email-error']")).isDisplayed()).isFalse();
         getDriver().findElement(By.xpath("//input[@name='email']")).clear();
     }
+
+    @And("I fill out optional fields")
+    public void iFillOutOptionalFields() {
+        getDriver().findElement(By.xpath("//input[@name='phone']")).sendKeys("1234567890");
+        getDriver().findElement(By.xpath("//input[@id='dateOfBirth']")).click();
+        getDriver().findElement(By.xpath("//select[@class='ui-datepicker-month']/option[@value='3']")).click();
+        getDriver().findElement(By.xpath("//select[@class='ui-datepicker-year']/option[@value='1980']")).click();
+        getDriver().findElement(By.xpath("//a[text()='12']")).click();
+        getDriver().findElement(By.xpath("//select[@name='countryOfOrigin']/option[@value='Canada']")).click();
+        getDriver().findElement(By.xpath("//input[@value='male']")).click();
+        getDriver().findElement(By.xpath("//input[@name='allowedToContact']")).click();
+        getDriver().findElement(By.xpath("//textarea[@id='address']")).sendKeys("1020 Main Str., Palo Alto, CA");
+        getDriver().findElement(By.xpath("//select[@name='carMake']/option[@value='Toyota']")).click();
+        getDriver().findElement(By.xpath("//button[@id='thirdPartyButton']")).click();
+        getDriver().switchTo().alert().accept();
+    }
 }
