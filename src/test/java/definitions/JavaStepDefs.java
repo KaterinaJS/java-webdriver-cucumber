@@ -4,7 +4,9 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class JavaStepDefs {
     @Given("I say hello world")
@@ -144,6 +146,66 @@ public class JavaStepDefs {
                 break;
             default:
                 System.out.println("Incorrect number of day: " + day);
+        }
+    }
+
+    @And("I work with maps")
+    public void iWorkWithMaps() {
+        Map<String, String> user = new HashMap<>();
+        user.put("username", "jdoe");
+        user.put("email", "john@doe.example.com");
+        user.put("password", "jdoe");
+        for(String key : user.keySet()) {
+            System.out.println(key + ": " + user.get(key));
+        }
+
+        Map<String, String> admin = new HashMap<>();
+        admin.put("username", "admin");
+        admin.put("email", "admin@admin.example.com");
+        admin.put("password", "adminPass");
+
+
+        for(String key : admin.keySet()) {
+            System.out.println(key + ": " + admin.get(key));
+        }
+
+    }
+
+    @And("I print {int} th day of week \\(Slava's version)")
+    public void iPrintThDayOfWeekSlavaSVersion(int day) {
+        String[] daysOfWeek = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        System.out.println(daysOfWeek[day - 1]);
+    }
+
+    @And("I print every {int} day of week")
+    public void iPrintEveryDayOfWeek(int every) {
+        final String[] daysOfWeek = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        int i = 1;
+        for (String day : daysOfWeek) {
+            if (i % every == 0) {
+                System.out.println(day);
+            }
+            i++;
+        }
+
+        System.out.println("----------");
+
+        for (int j = 1; j <= daysOfWeek.length ; j++) {
+            if (j % every == 0) {
+                System.out.println(daysOfWeek[j-1]);
+            }
+        }
+
+        System.out.println("----------");
+
+        for (int k = every; k <= daysOfWeek.length ; k += every) {
+            System.out.println(daysOfWeek[k-1]);
+        }
+
+        System.out.println("----------");
+
+        for (int m = 0; m < daysOfWeek.length; m++) {
+            System.out.println(daysOfWeek[m]);
         }
     }
 }

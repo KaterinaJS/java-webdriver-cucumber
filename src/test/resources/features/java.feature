@@ -10,6 +10,9 @@
       And I work with arrays
       And I print if number 35 is positive
       And I print 7 th day of week
+      And I print 7 th day of week (Slava's version)
+      And I print every 7 day of week
+      And I work with maps
 
     @java2
     Scenario: Actions with two strings
