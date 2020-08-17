@@ -3,10 +3,7 @@ package definitions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class JavaStepDefs {
     @Given("I say hello world")
@@ -151,6 +148,19 @@ public class JavaStepDefs {
 
     @And("I work with maps")
     public void iWorkWithMaps() {
+        Map<String, String> info = new LinkedHashMap<>();
+        info.put("firstName", "John");
+        info.put("middleName", "George");
+
+        String first = info.get("firstName");
+        String middle = info.get("middleName");
+
+        info.put("firstName", middle);
+        info.put("middleName", first);
+
+        System.out.println(info);
+
+
         Map<String, String> user = new HashMap<>();
         user.put("username", "jdoe");
         user.put("email", "john@doe.example.com");
