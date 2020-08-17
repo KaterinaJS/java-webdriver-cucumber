@@ -18,4 +18,5 @@ Feature: Marketing test suite
     And I print page details
     When I fill out required fields
     And I submit the form
-    Then I verify required fields
+#    Then I verify required fields
+    When I verify email field behavior

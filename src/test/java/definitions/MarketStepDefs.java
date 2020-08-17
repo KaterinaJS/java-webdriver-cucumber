@@ -42,8 +42,16 @@ public class MarketStepDefs {
 
     @When("I fill out required fields")
     public void iFillOutRequiredFields() {
-        getDriver().findElement(By.xpath("//input[@name='username']")).sendKeys("jdoe");
-        getDriver().findElement(By.xpath("//input[@name='email']")).sendKeys("john@doe.example.com");
+        getDriver().findElement(By.xpath("//input[@name='username']")).sendKeys("JS");
+        getDriver().findElement(By.xpath("//input[@name='email']")).sendKeys("john@smith.example.com");
+        getDriver().findElement(By.xpath("//input[@id='password']")).sendKeys("12345");
+        getDriver().findElement(By.xpath("//input[@id='confirmPassword']")).sendKeys("12345");
+        getDriver().findElement(By.xpath("//input[@id='name']")).click();
+        getDriver().findElement(By.xpath("//input[@id='firstName']")).sendKeys("John");
+        getDriver().findElement(By.xpath("//input[@id='middleName']")).sendKeys("Bob");
+        getDriver().findElement(By.xpath("//input[@id='lastName']")).sendKeys("Smith");
+        getDriver().findElement(By.xpath("//span[text()='Save']")).click();
+        getDriver().findElement(By.xpath("//input[@name='agreedToPrivacyPolicy']")).click();
     }
 
     @And("I submit the form")
@@ -71,5 +79,10 @@ public class MarketStepDefs {
             default:
                 System.out.println("Incorrect screen size");
         }
+    }
+
+    @When("I verify email field behavior")
+    public void iVerifyEmailFieldBehavior() {
+        getDriver().findElement(By.xpath("//input[@name='email']")).clear();
     }
 }
