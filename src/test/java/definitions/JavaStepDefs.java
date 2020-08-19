@@ -3,6 +3,7 @@ package definitions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 
+import java.sql.Array;
 import java.util.*;
 
 public class JavaStepDefs {
@@ -254,5 +255,19 @@ public class JavaStepDefs {
 
         System.out.println("info: " + info);
     }
+
+    @Given("I solve task with swapping two array elements")
+    public void iSolveTaskWithSwappingTwoArrayElements() {
+        int[] num = {5,2,9,7,3};
+
+        int temp = num[4];//3
+        num[4] = num[2];//9
+        num[2] = temp;
+
+        for(int n : num){
+            System.out.print(n + " ");
+        }
+    }
+
 
 }
