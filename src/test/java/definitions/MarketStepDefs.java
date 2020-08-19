@@ -74,7 +74,6 @@ public class MarketStepDefs {
         assertThat(name.equals("John Bob Smith"));
         String agreedToPolicy = getDriver().findElement(By.xpath("//b[@name='agreedToPrivacyPolicy']")).getText();
         assertThat(agreedToPolicy.equals("true"));
-
     }
 
     @And("I change resolution to {string}")

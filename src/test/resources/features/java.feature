@@ -17,3 +17,7 @@
     @java2
     Scenario: Actions with two strings
       Given I perform actions with "my var" and "my VAR"
+
+    @java3
+    Scenario: Coding challenges
+      Given I solve coding challenges

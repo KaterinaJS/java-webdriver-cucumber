@@ -218,4 +218,41 @@ public class JavaStepDefs {
             System.out.println(daysOfWeek[m]);
         }
     }
+
+    @Given("I solve coding challenges")
+    public void iSolveCodingChallenges() {
+        System.out.println("Coding challenges: >>>>>>>");
+        // swap
+        swap(10, 15);
+        // swap map keys
+        Map<String, String> info = new LinkedHashMap<>();
+        info.put("firstName", "John");
+        info.put("middleName", "George");
+        swapMap(info);
+    }
+
+    void swap(int a, int b) {
+        System.out.println("swap method >>>");
+        System.out.println("a: " + a);
+        System.out.println("b: " + b);
+
+        int temp = a;
+        a = b;
+        b = temp;
+
+        System.out.println("a: " + a);
+        System.out.println("b: " + b);
+    }
+
+    void swapMap(Map<String, String> info) {
+        System.out.println("swapMap method >>>");
+        System.out.println("info: " + info);
+
+        String temp = info.get("firstName");
+        info.put("firstName", info.get("middleName"));
+        info.put("middleName", temp);
+
+        System.out.println("info: " + info);
+    }
+
 }
