@@ -7,6 +7,8 @@ Feature: Marketing test suite
     When I print page details
     And I go to "quote" page
     And I print page details
+    And I go to "bing" page
+    And I print logs to the console
     And I go back and forward, then refresh
     And I change resolution to "phone"
     And I change resolution to "desktop"

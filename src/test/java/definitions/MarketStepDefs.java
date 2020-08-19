@@ -8,6 +8,9 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
 import support.TestContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,16 +19,24 @@ import static support.TestContext.getDriver;
 public class MarketStepDefs {
     @Given("I go to {string} page")
     public void iGoToPage(String page) {
-        if (page.equals("quote")) {
-            getDriver().get("https://skryabin.com/market/quote.html");
-        } else if (page.equals("google")) {
-            getDriver().get("https://www.google.com/");
-        } else if (page.equals("yahoo")) {
-            getDriver().get("https://www.yahoo.com/");
-        } else {
-            throw new RuntimeException("Unsupported page! " + page);
+        switch (page) {
+            case "quote":
+                getDriver().get("https://skryabin.com/market/quote.html");
+                break;
+            case "google":
+                getDriver().get("https://www.google.com/");
+                break;
+            case "yahoo":
+                getDriver().get("https://www.yahoo.com/");
+            case "bing":
+                getDriver().get("https://www.bing.com/");
+                break;
+            case "usps":
+                getDriver().get("https://www.usps.com/");
+                break;
+            default:
+                throw new RuntimeException("Unsupported page! " + page);
         }
-
     }
 
     @When("I print page details")
@@ -78,7 +89,7 @@ public class MarketStepDefs {
 
     @And("I change resolution to {string}")
     public void iChangeResolutionTo(String screenSize) {
-        switch (screenSize){
+        switch (screenSize) {
             case "phone":
                 Dimension d1 = new Dimension(400, 768);
                 getDriver().manage().window().setSize(d1);
@@ -139,5 +150,18 @@ public class MarketStepDefs {
         assertThat(address.equals("1020 Main Str., Palo Alto, CA"));
         String car = getDriver().findElement(By.xpath("//b[@name='carMake']")).getText();
         assertThat(car.equals("Toyota"));
+    }
+
+    @And("I print logs to the console")
+    public void iPrintLogsToTheConsole() throws InterruptedException {
+        Thread.sleep(1000);
+        LogEntries logs = getDriver().manage().logs().get(LogType.BROWSER);
+        System.out.println("Logs begin >>>>");
+
+        for (LogEntry log : logs) {
+            System.out.println(log);
+        }
+
+        System.out.println("Logs end >>>>");
     }
 }
