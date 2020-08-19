@@ -28,6 +28,7 @@ public class MarketStepDefs {
                 break;
             case "yahoo":
                 getDriver().get("https://www.yahoo.com/");
+                break;
             case "bing":
                 getDriver().get("https://www.bing.com/");
                 break;
