@@ -99,7 +99,7 @@ public class JavaStepDefs {
         int sum = num1 + num2;
         int difference = num1 - num2;
         int quotient = num1 / num2;
-        int  product = num1 * num2;
+        int product = num1 * num2;
         System.out.println("Sum: " + sum);
         System.out.println("Difference: " + difference);
         System.out.println("Quotient: " + quotient);
@@ -108,7 +108,7 @@ public class JavaStepDefs {
 
     @And("I print if number {int} is positive")
     public void iPrintIfNumberIsPositive(int num) {
-        if (num == 0){
+        if (num == 0) {
             System.out.println("Number " + num + " is not negative and not positive");
         } else if (num > 0) {
             System.out.println("Number " + num + " is positive");
@@ -166,7 +166,7 @@ public class JavaStepDefs {
         user.put("username", "jdoe");
         user.put("email", "john@doe.example.com");
         user.put("password", "jdoe");
-        for(String key : user.keySet()) {
+        for (String key : user.keySet()) {
             System.out.println(key + ": " + user.get(key));
         }
 
@@ -176,7 +176,7 @@ public class JavaStepDefs {
         admin.put("password", "adminPass");
 
 
-        for(String key : admin.keySet()) {
+        for (String key : admin.keySet()) {
             System.out.println(key + ": " + admin.get(key));
         }
 
@@ -201,16 +201,16 @@ public class JavaStepDefs {
 
         System.out.println("----------");
 
-        for (int j = 1; j <= daysOfWeek.length ; j++) {
+        for (int j = 1; j <= daysOfWeek.length; j++) {
             if (j % every == 0) {
-                System.out.println(daysOfWeek[j-1]);
+                System.out.println(daysOfWeek[j - 1]);
             }
         }
 
         System.out.println("----------");
 
-        for (int k = every; k <= daysOfWeek.length ; k += every) {
-            System.out.println(daysOfWeek[k-1]);
+        for (int k = every; k <= daysOfWeek.length; k += every) {
+            System.out.println(daysOfWeek[k - 1]);
         }
 
         System.out.println("----------");
@@ -256,18 +256,37 @@ public class JavaStepDefs {
         System.out.println("info: " + info);
     }
 
-    @Given("I solve task with swapping two array elements")
-    public void iSolveTaskWithSwappingTwoArrayElements() {
-        int[] num = {5,2,9,7,3};
+    @Given("I solve task with swapping two array elements {int} th and {int} th")
+    public void iSolveTaskWithSwappingTwoArrayElements(int ind1, int ind2) {
+        int[] num = {5, 2, 9, 7, 3};
 
-        int temp = num[4];//3
-        num[4] = num[2];//9
-        num[2] = temp;
+        if(ind1 >= num.length + 1 || ind2 >= num.length + 1){
+            System.out.println("Not found element");
+        } else {
+            int temp = num[ind2 - 1];
+            num[ind2 - 1] = num[ind1 - 1];
+            num[ind1 - 1] = temp;
 
-        for(int n : num){
-            System.out.print(n + " ");
+            for (int n : num) {
+                System.out.print(n + " ");
+            }
         }
+
+
+
     }
 
 
+    @Given("I check if a number {int} divisible by {int} and {int}")
+    public void iCheckIfANumberDivisibleByAnd(int num, int divByNum1, int divByNum2) {
+        if(num % divByNum1 == 0 && num % divByNum2 == 0){
+            System.out.println("Number " + num + " is divisible by " + divByNum1 + " and " + divByNum2);
+        } else if(num % divByNum1 == 0){
+            System.out.println("Number " + num + " is divisible by " + divByNum1);
+        } else if(num % divByNum2 == 0){
+            System.out.println("Number " + num + " is divisible by " + divByNum2);
+        } else {
+            System.out.println("Number " + num + " is not divisible by " + divByNum1 + " or " + divByNum2);
+        }
+    }
 }

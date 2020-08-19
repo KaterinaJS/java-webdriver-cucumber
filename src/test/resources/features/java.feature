@@ -24,4 +24,8 @@ Feature: Java feature
 
   @java4
   Scenario: Swap two array elements
-    Given I solve task with swapping two array elements
+    Given I solve task with swapping two array elements 3 th and 5 th
+
+  @java5
+  Scenario: Number divisible by
+    Given I check if a number 12 divisible by 3 and 4
