@@ -8,3 +8,7 @@ Feature: Tasks from Codewars
   @task2
   Scenario: Fix string case
     Given I fix string case
+
+  @task3
+  Scenario: Simple string reversal
+    Given I reverse a part of a string

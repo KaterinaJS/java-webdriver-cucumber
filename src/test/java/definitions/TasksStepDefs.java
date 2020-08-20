@@ -28,42 +28,76 @@ public class TasksStepDefs {
 
     @Given("I fix string case")
     public void iFixStringCase() {
-        /*you will be given a string that may have mixed uppercase and lowercase letters
+        /* you will be given a string that may have mixed uppercase and lowercase letters
         and your task is to convert that string to either lowercase only or uppercase only based on:
         - make as few changes as possible.
         - if the string contains equal number of uppercase and lowercase letters,
         convert the string to lowercase.
+
         1. solve("coDe") = "code";
         2. solve("CODe") = "CODE";
         3. solve("coDE") = "code" */
+
         System.out.println(cases("coDe"));
         System.out.println(cases("CODe"));
         System.out.println(cases("coDE"));
     }
 
-        public static String cases(final String str) {
-            int countLower = 0;
-            int countUpper = 0;
-            String result = "";
-            for (int i = 0; i < str.length(); i++) {
-                if (str.charAt(i) == Character.toLowerCase(str.charAt(i))) {
-                    countLower += 1;
-                } else {
-                    countUpper += 1;
-                }
-                if (countLower > countUpper) {
-                    result = str.toLowerCase();
-                } else if (countLower < countUpper) {
-                    result = str.toUpperCase();
-                } else {
-                    result = str.toLowerCase();
-                }
+    public static String cases(final String str) {
+        int countLower = 0;
+        int countUpper = 0;
+        String result = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == Character.toLowerCase(str.charAt(i))) {
+                countLower += 1;
+            } else {
+                countUpper += 1;
             }
-            return result;
+            if (countLower > countUpper) {
+                result = str.toLowerCase();
+            } else if (countLower < countUpper) {
+                result = str.toUpperCase();
+            } else {
+                result = str.toLowerCase();
+            }
         }
+        return result;
+    }
+
+    @Given("I reverse a part of a string")
+    public void iReverseAPartOfAString() {
+        /* you will be given a string and two indexes (a and b).
+        Your task is to reverse the portion of that string between those two indices inclusive.
+        Input will be lowercase and uppercase letters only.
+        The first index a will always be lower that than the string length;
+        the second index b can be greater than the string length.
+
+        1. solve("codewars",1,5) = "cawedors" -- elements at index 1 to 5 inclusive are "odewa".
+        So we reverse them.
+        2. solve("cODEWArs", 1,5) = "cAWEDOrs" -- to help visualize. */
+
+        System.out.println(partialReverse("codewars", 1, 5));
+        System.out.println(partialReverse("cODEWArs", 1, 5));
+        System.out.println(partialReverse("Kate", 1, 5));
+    }
+
+
+    public static String partialReverse (String s, int a, int b) {
+        if (b > s.length() - 1) {
+            String part = s.substring(a);
+            StringBuilder sb = new StringBuilder(part);
+            String reversePart = sb.reverse().toString();
+            return s.substring(0, a) + reversePart;
+        } else {
+            String part = s.substring(a, b + 1);
+            StringBuilder sb = new StringBuilder(part);
+            String reversePart = sb.reverse().toString();
+            return s.substring(0, a) + reversePart + s.substring(b + 1);
+        }
+    }
+
+
 }
-
-
 
 
 
