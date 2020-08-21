@@ -132,7 +132,26 @@ public class TasksStepDefs {
             }
             return result;
         }
+
+    @Given("I calculate doubles second version")
+    public void iCalculateDoublesSecondVersion() {
+        System.out.println(calculateNew(3, "+", 1.5));
+        System.out.println(calculateNew(3, "*", 1.5));
+        System.out.println(calculateNew(3, "/", 0));
+        System.out.println(calculateNew(3, "r", 1.5));
     }
+
+    public static Double calculateNew(final double x, final String op, final double y) {
+        switch (op) {
+            case "+": return x + y;
+            case "-": return x - y;
+            case "*": return x * y + 0.0;
+            case "/": return y == 0 ? null : x / y;
+        }
+        return null;
+    }
+}
+
 
 
 

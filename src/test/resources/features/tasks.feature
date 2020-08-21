@@ -17,3 +17,6 @@ Feature: Tasks from Codewars
   Scenario: Calculator
     Given I calculate doubles
 
+  @task5
+  Scenario: Calculator2
+    Given I calculate doubles second version
