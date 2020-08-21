@@ -99,6 +99,12 @@ public class TasksStepDefs {
 
     @Given("I calculate doubles")
     public void iCalculateDoubles() {
+        /* Write a function called calculate that takes 3 values. The first and third values are numbers.
+        The second value is a character. If the character is "+" , "-", "*", or "/",
+        the function will return the result of the corresponding mathematical function on the two numbers.
+        If the string is not one of the specified characters, the function should return null.
+        Keep in mind, you cannot divide by zero. If an attempt to divide by zero is made, return null */
+
         System.out.println(calculate(3, "+", 1.5));
         System.out.println(calculate(3, "*", 1.5));
         System.out.println(calculate(3, "/", 0));
@@ -135,6 +141,12 @@ public class TasksStepDefs {
 
     @Given("I calculate doubles second version")
     public void iCalculateDoublesSecondVersion() {
+        /* Write a function called calculate that takes 3 values. The first and third values are numbers.
+        The second value is a character. If the character is "+" , "-", "*", or "/",
+        the function will return the result of the corresponding mathematical function on the two numbers.
+        If the string is not one of the specified characters, the function should return null.
+        Keep in mind, you cannot divide by zero. If an attempt to divide by zero is made, return null */
+
         System.out.println(calculateNew(3, "+", 1.5));
         System.out.println(calculateNew(3, "*", 1.5));
         System.out.println(calculateNew(3, "/", 0));
