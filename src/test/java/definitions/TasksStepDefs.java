@@ -162,7 +162,24 @@ public class TasksStepDefs {
         }
         return null;
     }
+
+    @Given("I solve task about greeting")
+    public void iSolveTaskAboutGreeting() {
+        /* Write a method that takes one argument as name and then greets that name, capitalized and ends with an exclamation point.
+        1. "riley" --> "Hello Riley!"
+        2. "JACK"  --> "Hello Jack!" */
+
+        System.out.println(greet("riley"));
+        System.out.println(greet("JACK"));
+
+    }
+
+    public static String greet(String name){
+        char firstLetter = Character.toUpperCase(name.charAt(0));
+        return "Hello " + firstLetter + name.substring(1).toLowerCase() + "!";
+    }
 }
+
 
 
 

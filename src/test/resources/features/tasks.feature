@@ -20,3 +20,7 @@ Feature: Tasks from Codewars
   @task5
   Scenario: Calculator2
     Given I calculate doubles second version
+
+  @task6
+  Scenario: Greeting
+    Given I solve task about greeting
