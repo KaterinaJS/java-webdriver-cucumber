@@ -12,3 +12,8 @@ Feature: Tasks from Codewars
   @task3
   Scenario: Simple string reversal
     Given I reverse a part of a string
+
+  @task4
+  Scenario: Calculator
+    Given I calculate doubles
+

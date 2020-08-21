@@ -97,7 +97,43 @@ public class TasksStepDefs {
     }
 
 
-}
+    @Given("I calculate doubles")
+    public void iCalculateDoubles() {
+        System.out.println(calculate(3, "+", 1.5));
+        System.out.println(calculate(3, "*", 1.5));
+        System.out.println(calculate(3, "/", 0));
+        System.out.println(calculate(3, "r", 1.5));
+    }
+
+        public static Double calculate (final double numberOne, final String operation, final double numberTwo) {
+            double result = 0.0;
+            if((operation != "+") && (operation != "-") && (operation != "*") && (operation != "/")){
+                return null;
+            }
+
+            else if(operation == "/" && numberTwo == 0){
+                return null;
+            } else {
+
+                switch (operation){
+                    case "+":
+                        result += numberOne + numberTwo;
+                        break;
+                    case "-":
+                        result += numberOne - numberTwo;
+                        break;
+                    case "*":
+                        result += numberOne * numberTwo;
+                        break;
+                    case "/":
+                        result += numberOne / numberTwo;
+                        break;
+                }
+            }
+            return result;
+        }
+    }
+
 
 
 
