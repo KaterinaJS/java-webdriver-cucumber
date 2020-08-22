@@ -49,3 +49,7 @@ Feature: Java feature
   @java10
   Scenario: Write a function that checks if array is empty
     Given I check if array is empty
+
+  @java11
+  Scenario: Fizz Buzz
+    Given I solve Fizz Buzz task
