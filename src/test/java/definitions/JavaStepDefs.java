@@ -286,4 +286,17 @@ public class JavaStepDefs {
             System.out.println("Number " + num + " is not divisible by " + divByNum1 + " or " + divByNum2);
         }
     }
+
+
+    @Given("I print all numbers from zero up to n")
+    public void iPrintAllNumbersFromZeroUpToN() {
+        allNumbers(5);
+    }
+
+    public void allNumbers (int num) {
+        for(int i = 0; i <= num; i++){
+            System.out.print(i + " ");
+        }
+    }
+
 }

@@ -29,3 +29,7 @@ Feature: Java feature
   @java5
   Scenario: Number divisible by
     Given I check if a number 12 divisible by 3 and 4
+
+  @java6
+  Scenario: Numbers from 0 up to n
+    Given I print all numbers from zero up to n
