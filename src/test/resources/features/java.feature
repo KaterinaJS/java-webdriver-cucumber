@@ -41,3 +41,7 @@ Feature: Java feature
   @java8
   Scenario: Print all integer array
     Given I print all integer array
+
+  @java9
+  Scenario: Print all even numbers from integer array
+    Given I print all even numbers from integer array

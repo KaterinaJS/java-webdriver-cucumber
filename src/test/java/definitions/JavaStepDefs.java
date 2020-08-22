@@ -327,4 +327,16 @@ public class JavaStepDefs {
             System.out.print(num + " ");
         }
     }
+
+    @Given("I print all even numbers from integer array")
+    public void iPrintAllEvenNumbersFromIntegerArray() {
+        int[] arr = {2, 5, 7, 8, 45, -24};
+        for(int num : arr){
+            if(num % 2 == 0) {
+                System.out.print(num + " ");
+            } else {
+                System.out.print("");
+            }
+        }
+    }
 }
