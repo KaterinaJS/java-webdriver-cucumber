@@ -33,3 +33,7 @@ Feature: Java feature
   @java6
   Scenario: Numbers from 0 up to n
     Given I print all numbers from zero up to n
+
+  @java7
+  Scenario: Support also negative numbers
+    Given I print all numbers from zero up to n and support also negative numbers

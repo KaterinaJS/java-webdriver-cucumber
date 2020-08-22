@@ -293,10 +293,30 @@ public class JavaStepDefs {
         allNumbers(5);
     }
 
-    public void allNumbers (int num) {
-        for(int i = 0; i <= num; i++){
+    public void allNumbers (int n) {
+        for(int i = 0; i <= n; i++){
             System.out.print(i + " ");
         }
     }
 
+    @Given("I print all numbers from zero up to n and support also negative numbers")
+    public void iPrintAllNumbersFromZeroUpToNAndSupportAlsoNegativeNumbers() {
+        printNumbers(-7);
+    }
+
+    public void printNumbers(int n) {
+        if(n > 0){
+            for(int i = 0; i <= n; i++) {
+                System.out.print(i + " ");
+            }
+        }
+        else if (n < 0){
+            for(int i = n; i <= 0; i++) {
+                System.out.print(i + " ");
+            }
+        }
+        else {
+            System.out.println(0);
+        }
+    }
 }
