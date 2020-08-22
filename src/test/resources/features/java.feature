@@ -45,3 +45,7 @@ Feature: Java feature
   @java9
   Scenario: Print all even numbers from integer array
     Given I print all even numbers from integer array
+
+  @java10
+  Scenario: Write a function that checks if array is empty
+    Given I check if array is empty

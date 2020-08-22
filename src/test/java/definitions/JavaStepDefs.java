@@ -2,6 +2,7 @@ package definitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import org.apache.logging.log4j.core.util.JsonUtils;
 
 import java.sql.Array;
 import java.util.*;
@@ -337,6 +338,17 @@ public class JavaStepDefs {
             } else {
                 System.out.print("");
             }
+        }
+    }
+
+    @Given("I check if array is empty")
+    public void iCheckIfArrayIsEmpty() {
+        int[] arr = {2, 5, 7, 8, 45, -24};
+
+        if (arr.length == 0) {
+            System.out.println("This array is empty");
+        } else {
+            System.out.println("This array is NOT empty");
         }
     }
 }
