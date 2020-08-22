@@ -37,3 +37,7 @@ Feature: Java feature
   @java7
   Scenario: Support also negative numbers
     Given I print all numbers from zero up to n and support also negative numbers
+
+  @java8
+  Scenario: Print all integer array
+    Given I print all integer array

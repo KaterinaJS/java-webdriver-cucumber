@@ -319,4 +319,12 @@ public class JavaStepDefs {
             System.out.println(0);
         }
     }
+
+    @Given("I print all integer array")
+    public void iPrintAllIntegerArray() {
+        int[] arr = {2, 5, 7, 9, 12};
+        for(int num : arr){
+            System.out.print(num + " ");
+        }
+    }
 }
