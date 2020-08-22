@@ -261,7 +261,7 @@ public class JavaStepDefs {
     public void iSolveTaskWithSwappingTwoArrayElements(int ind1, int ind2) {
         int[] num = {5, 2, 9, 7, 3};
 
-        if(ind1 >= num.length + 1 || ind2 >= num.length + 1){
+        if (ind1 >= num.length + 1 || ind2 >= num.length + 1) {
             System.out.println("Not found element");
         } else {
             int temp = num[ind2 - 1];
@@ -277,11 +277,11 @@ public class JavaStepDefs {
 
     @Given("I check if a number {int} divisible by {int} and {int}")
     public void iCheckIfANumberDivisibleByAnd(int num, int divByNum1, int divByNum2) {
-        if(num % divByNum1 == 0 && num % divByNum2 == 0){
+        if (num % divByNum1 == 0 && num % divByNum2 == 0) {
             System.out.println("Number " + num + " is divisible by " + divByNum1 + " and " + divByNum2);
-        } else if(num % divByNum1 == 0){
+        } else if (num % divByNum1 == 0) {
             System.out.println("Number " + num + " is divisible by " + divByNum1);
-        } else if(num % divByNum2 == 0){
+        } else if (num % divByNum2 == 0) {
             System.out.println("Number " + num + " is divisible by " + divByNum2);
         } else {
             System.out.println("Number " + num + " is not divisible by " + divByNum1 + " or " + divByNum2);
@@ -294,8 +294,8 @@ public class JavaStepDefs {
         allNumbers(5);
     }
 
-    public void allNumbers (int n) {
-        for(int i = 0; i <= n; i++){
+    public void allNumbers(int n) {
+        for (int i = 0; i <= n; i++) {
             System.out.print(i + " ");
         }
     }
@@ -306,17 +306,15 @@ public class JavaStepDefs {
     }
 
     public void printNumbers(int n) {
-        if(n > 0){
-            for(int i = 0; i <= n; i++) {
+        if (n > 0) {
+            for (int i = 0; i <= n; i++) {
                 System.out.print(i + " ");
             }
-        }
-        else if (n < 0){
-            for(int i = n; i <= 0; i++) {
+        } else if (n < 0) {
+            for (int i = n; i <= 0; i++) {
                 System.out.print(i + " ");
             }
-        }
-        else {
+        } else {
             System.out.println(0);
         }
     }
@@ -324,7 +322,7 @@ public class JavaStepDefs {
     @Given("I print all integer array")
     public void iPrintAllIntegerArray() {
         int[] arr = {2, 5, 7, 9, 12};
-        for(int num : arr){
+        for (int num : arr) {
             System.out.print(num + " ");
         }
     }
@@ -332,8 +330,8 @@ public class JavaStepDefs {
     @Given("I print all even numbers from integer array")
     public void iPrintAllEvenNumbersFromIntegerArray() {
         int[] arr = {2, 5, 7, 8, 45, -24};
-        for(int num : arr){
-            if(num % 2 == 0) {
+        for (int num : arr) {
+            if (num % 2 == 0) {
                 System.out.print(num + " ");
             } else {
                 System.out.print("");
@@ -359,16 +357,35 @@ public class JavaStepDefs {
     }
 
     public void fizzBuzz(int n) {
-        for(int i = 1; i <= n; i++){
-            if(i % 3 == 0 && i % 5 == 0){
+        for (int i = 1; i <= n; i++) {
+            if (i % 3 == 0 && i % 5 == 0) {
                 System.out.print("FizzBuzz ");
-            } else if(i % 3 == 0){
+            } else if (i % 3 == 0) {
                 System.out.print("Fizz ");
-            } else if(i % 5 == 0){
+            } else if (i % 5 == 0) {
                 System.out.print("Buzz ");
             } else {
                 System.out.print(i + " ");
             }
+        }
+    }
+
+    @Given("I check if array contains another element")
+    public void iCheckIfArrayContainsAnotherElement() {
+        int[] numbers = {5, 7, 34, 789, 15};
+        int n = -7;
+        containsElement(numbers, n);
+    }
+
+    public void containsElement(int[] numbers, int n) {
+        int count = 0;
+        for (int num : numbers) {
+            if(num == n) count += 1;
+        }
+        if (count > 0 ) {
+            System.out.println("This array contains number " + n);
+        } else {
+            System.out.println("This array DOES NOT contain number " + n);
         }
     }
 }

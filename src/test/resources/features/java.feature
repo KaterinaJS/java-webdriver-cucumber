@@ -53,3 +53,7 @@ Feature: Java feature
   @java11
   Scenario: Fizz Buzz
     Given I solve Fizz Buzz task
+
+  @java12
+  Scenario: Array contains another element
+    Given I check if array contains another element
