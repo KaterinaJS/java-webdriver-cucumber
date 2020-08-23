@@ -3,6 +3,7 @@ package definitions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import org.apache.logging.log4j.core.util.JsonUtils;
+import org.w3c.dom.ls.LSOutput;
 
 import java.sql.Array;
 import java.util.*;
@@ -380,12 +381,28 @@ public class JavaStepDefs {
     public void containsElement(int[] numbers, int n) {
         int count = 0;
         for (int num : numbers) {
-            if(num == n) count += 1;
+            if (num == n) count += 1;
         }
-        if (count > 0 ) {
+        if (count > 0) {
             System.out.println("This array contains number " + n);
         } else {
             System.out.println("This array DOES NOT contain number " + n);
         }
+    }
+
+    @Given("I check if a String array contains another element \\(with return)")
+    public void iCheckIfAStringArrayContainsAnotherElementWithReturn() {
+        String[] colors = {"green", "Orange", "RED", "blue"};
+        String color = "red";
+        System.out.println(containsColor(colors, color));
+    }
+
+    public Boolean containsColor(String[] colors, String color) {
+        int count = 0;
+        for (String col : colors) {
+            if(col.equalsIgnoreCase(color))
+                count += 1;
+        }
+        return count > 0;
     }
 }

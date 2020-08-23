@@ -57,3 +57,7 @@ Feature: Java feature
   @java12
   Scenario: Array contains another element
     Given I check if array contains another element
+
+  @java13
+  Scenario: String array contains another element
+    Given I check if a String array contains another element (with return)
