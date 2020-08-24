@@ -354,7 +354,6 @@ public class JavaStepDefs {
     @Given("I solve Fizz Buzz task")
     public void iSolveFizzBuzzTask() {
         fizzBuzz(20);
-
     }
 
     public void fizzBuzz(int n) {
