@@ -2,6 +2,8 @@ package definitions;
 
 import cucumber.api.java.en.Given;
 
+import java.util.Arrays;
+
 public class TasksStepDefs {
     @Given("I solve task with Alternate case")
     public void iSolveTask() {
@@ -177,6 +179,18 @@ public class TasksStepDefs {
     public static String greet(String name){
         char firstLetter = Character.toUpperCase(name.charAt(0));
         return "Hello " + firstLetter + name.substring(1).toLowerCase() + "!";
+    }
+
+    @Given("I find a shortest word")
+    public void iFindAShortestWord() {
+        // Simple, given a string of words, return the length of the shortest word(s).
+        System.out.println(findShort("bitcoin take over the world maybe who knows perhaps"));
+    }
+
+    public static int findShort(String s) {
+        String[] arr = s.split(" ");
+        Arrays.sort(arr, (str1, str2) -> str1.length() - str2.length());
+        return arr[0].length();
     }
 }
 

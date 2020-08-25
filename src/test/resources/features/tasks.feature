@@ -24,3 +24,7 @@ Feature: Tasks from Codewars
   @task6
   Scenario: Greeting
     Given I solve task about greeting
+
+  @tasks7
+  Scenario: Shortest Word
+    Given I find a shortest word

@@ -66,7 +66,7 @@ public class UspsStepDefs {
 
     @When("I perform {string} search")
     public void iPerformSearch(String search) {
-        WebElement searchIcon = getDriver().findElement(By.xpath("//li[contains(@class, 'nav-search')]/a[@class='menuitem']"));
+        WebElement searchIcon = getDriver().findElement(By.xpath("//li[contains(@class,'nav-search')]/a[@class='menuitem']"));
         Actions actions = new Actions(getDriver());
         actions.moveToElement(searchIcon).perform();
         getDriver().findElement(By.xpath("//div[@class='repos']//a[text()='" + search.toUpperCase() + "']")).click();
