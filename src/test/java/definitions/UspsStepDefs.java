@@ -4,12 +4,15 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
@@ -35,6 +38,8 @@ public class UspsStepDefs {
     public void iValidateZipCodeExistsInTheResult(String zip) {
         String resultForm = getDriver().findElement(By.xpath("//div[@id='zipByAddressDiv']")).getText();
         assertThat(resultForm.contains(zip));
+//        wait.until(driver -> resultForm.getText().length() > 0);
+//        assertThat(resultForm.getText()).contains(zip);
     }
 
     @When("I go to Calculate Price Page")
@@ -66,29 +71,43 @@ public class UspsStepDefs {
 
     @When("I perform {string} search")
     public void iPerformSearch(String search) {
-        WebElement searchIcon = getDriver().findElement(By.xpath("//li[contains(@class,'nav-search')]/a[@class='menuitem']"));
-        Actions actions = new Actions(getDriver());
-        actions.moveToElement(searchIcon).perform();
-        getDriver().findElement(By.xpath("//div[@class='repos']//a[text()='" + search.toUpperCase() + "']")).click();
+//        WebElement searchIcon = getDriver().findElement(By.xpath("//li[contains(@class,'nav-search')]/a[@class='menuitem']"));
+//        Actions actions = new Actions(getDriver());
+//        actions.moveToElement(searchIcon).perform();
+//        getDriver().findElement(By.xpath("//div[@class='repos']//a[text()='" + search.toUpperCase() + "']")).click();
 
+        WebElement searchMenu = getDriver().findElement(By.xpath("//li[contains(@class, 'nav-search')]"));
+        WebElement searchInput = getDriver().findElement(By.xpath("//input[@id='global-header--search-track-search']"));
+        new Actions(getDriver())
+                .moveToElement(searchMenu)
+                .sendKeys(searchInput, search)
+                .sendKeys(Keys.ENTER)
+                .perform();
     }
 
     @And("I set {string} in filters")
-    public void iSetInFilters(String filter) throws InterruptedException {
-        Thread.sleep(2000);
+    public void iSetInFilters(String filter){
+        WebDriverWait wait = new WebDriverWait(getDriver(), 5);
+        WebElement spinner = getDriver().findElement(By.xpath("//div[@class='white-spinner-container']"));
+        wait.until(ExpectedConditions.invisibilityOf(spinner));
         getDriver().findElement(By.xpath("//a[@class='dn-attr-a'][text()='" + filter + "']")).click();
+        wait.until(ExpectedConditions.invisibilityOf(spinner));
     }
 
     @Then("I verify that {string} results found")
     public void iVerifyThatResultsFound(String number) {
-        String result = getDriver().findElement(By.xpath("//span[@id='searchResultsHeading']")).getText();
-        assertThat(result.contains(number));
+//        String result = getDriver().findElement(By.xpath("//span[@id='searchResultsHeading']")).getText();
+//        assertThat(result.contains(number));
+
+        int expectedSize = Integer.parseInt(number);
+        List<WebElement> results = getDriver().findElements(By.xpath("//ul[@id='records']/li"));
+        int actualSize = results.size();
+        assertThat(actualSize).isEqualTo(expectedSize);
     }
 
     @When("I select {string} in results")
-    public void iSelectInResults(String option) throws InterruptedException {
-        Thread.sleep(2000);
-        getDriver().findElement(By.xpath("//span[text()='" + option + "']")).click();
+    public void iSelectInResults(String option){
+        getDriver().findElement(By.xpath("//span[text()='Priority Mail | USPS']")).click();
     }
 
     @And("I click {string} button")
@@ -97,13 +116,19 @@ public class UspsStepDefs {
     }
 
     @Then("I validate that Sign In is required")
-    public void iValidateThatSignInIsRequired() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(getDriver(), 5);
-        getDriver().navigate().to("https://reg.usps.com/entreg/LoginAction_input?app=GSS&appURL=https://cns.usps.com/labelInformation.shtml");
+    public void iValidateThatSignInIsRequired() {
+        String originalWindow = getDriver().getWindowHandle();
+        // switch to new window
+        for (String handle : getDriver().getWindowHandles()) {
+            getDriver().switchTo().window(handle);
+        }
 
-        WebElement signInButton = getDriver().findElement(By.xpath("//button[@id='btn-submit']"));
-        wait.until(ExpectedConditions.visibilityOf(signInButton));
+        new WebDriverWait(getDriver(), 5).until(ExpectedConditions.titleContains("Sign In"));
+        WebElement username = getDriver().findElement(By.xpath("//input[@id='username']"));
+        assertThat(username.isDisplayed()).isTrue();
 
+        // switch back
+        getDriver().switchTo().window(originalWindow);
     }
 
     @When("I go to {string} tab")
