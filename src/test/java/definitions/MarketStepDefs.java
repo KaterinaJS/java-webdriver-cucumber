@@ -35,6 +35,9 @@ public class MarketStepDefs {
             case "usps":
                 getDriver().get("https://www.usps.com/");
                 break;
+            case "converter":
+                getDriver().get("https://www.unitconverters.net/");
+                break;
             default:
                 throw new RuntimeException("Unsupported page! " + page);
         }
