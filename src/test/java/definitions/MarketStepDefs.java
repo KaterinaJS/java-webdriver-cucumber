@@ -189,4 +189,22 @@ public class MarketStepDefs {
         // switch back to the parent page
         getDriver().switchTo().defaultContent();
     }
+
+    @And("I verify document list contains {string}")
+    public void iVerifyDocumentListContains(String expectedDoc) {
+        String originalWindow = getDriver().getWindowHandle();
+
+        getDriver().findElement(By.xpath("//button[contains(@onclick, 'new')]")).click();
+
+        // switch to a new window
+        for (String handle : getDriver().getWindowHandles()) {
+            getDriver().switchTo().window(handle);
+        }
+
+        String allDocText = getDriver().findElement(By.xpath("//body")).getText();
+        assertThat(allDocText).contains(expectedDoc);
+
+        // switch back to original window
+        getDriver().switchTo().window(originalWindow);
+    }
 }
