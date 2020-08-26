@@ -38,6 +38,9 @@ public class MarketStepDefs {
             case "converter":
                 getDriver().get("https://www.unitconverters.net/");
                 break;
+            case "calculator":
+                getDriver().get("https://www.calculator.net/");
+                break;
             default:
                 throw new RuntimeException("Unsupported page! " + page);
         }
