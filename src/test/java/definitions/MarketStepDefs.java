@@ -165,4 +165,16 @@ public class MarketStepDefs {
 
         System.out.println("Logs end >>>>");
     }
+
+    @And("I {string} third party agreement")
+    public void iThirdPartyAgreement(String action) {
+        getDriver().findElement(By.xpath("//button[@id='thirdPartyButton']")).click();
+        if (action.equals("accept")) {
+            getDriver().switchTo().alert().accept();
+        } else if (action.equals("dismiss")) {
+            getDriver().switchTo().alert().dismiss();
+        } else {
+            throw new RuntimeException("Incorrect action: " + action);
+        }
+    }
 }

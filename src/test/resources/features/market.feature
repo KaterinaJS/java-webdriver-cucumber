@@ -25,4 +25,14 @@ Feature: Marketing test suite
     Then I verify required fields
     And I verify optional fields
 
+  @market3
+  Scenario: Alert, iFrame and Window
+    Given I go to "quote" page
+    And I "dismiss" third party agreement
+    And I wait for 1 sec
+    And I fill out "Richard Roe" name and "0123456789" phone contact
+    And I wait for 1 sec
+    And I verify document list contains "Document 2"
+    And I fill out required fields
+
 
