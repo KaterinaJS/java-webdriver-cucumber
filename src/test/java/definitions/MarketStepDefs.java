@@ -177,4 +177,16 @@ public class MarketStepDefs {
             throw new RuntimeException("Incorrect action: " + action);
         }
     }
+
+    @And("I fill out {string} name and {string} phone contact")
+    public void iFillOutNameAndPhoneContact(String name, String phone) {
+        // switch to iframe
+        getDriver().switchTo().frame("additionalInfo");
+
+        getDriver().findElement(By.xpath("//input[@id='contactPersonName']")).sendKeys(name);
+        getDriver().findElement(By.xpath("//input[@id='contactPersonPhone']")).sendKeys(phone);
+
+        // switch back to the parent page
+        getDriver().switchTo().defaultContent();
+    }
 }
