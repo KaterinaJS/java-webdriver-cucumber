@@ -13,6 +13,7 @@ Feature: Java feature
     And I print 7 th day of week (Slava's version)
     And I print every 7 day of week
     And I work with maps
+    And I write lambda
 
   @java2
   Scenario: Actions with two strings

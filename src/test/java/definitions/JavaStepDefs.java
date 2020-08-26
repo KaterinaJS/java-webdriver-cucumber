@@ -404,4 +404,20 @@ public class JavaStepDefs {
         }
         return count > 0;
     }
+
+    @And("I write lambda")
+    public void iWriteLambda() {
+        List<String> intList = Arrays.asList("abcabc", "abcabcabc", "abc");
+        System.out.println(intList);
+
+        intList.sort(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o2.length() - o1.length();
+            }
+        });
+
+//        intList.sort((o1, o2) -> o2.length() - o1.length());
+        System.out.println(intList);
+    }
 }
