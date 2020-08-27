@@ -28,3 +28,7 @@ Feature: Tasks from Codewars
   @tasks7
   Scenario: Shortest Word
     Given I find a shortest word
+
+  @task8
+  Scenario: Sum of numbers
+    Given I solve task sum of numbers from zero to N

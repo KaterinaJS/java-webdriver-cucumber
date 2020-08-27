@@ -192,6 +192,40 @@ public class TasksStepDefs {
         Arrays.sort(arr, (str1, str2) -> str1.length() - str2.length());
         return arr[0].length();
     }
+
+    @Given("I solve task sum of numbers from zero to N")
+    public void iSolveTaskSumOfNumbersFromZeroToN() {
+        /* We want to generate a function that computes the series starting from 0 and ending
+        until the given number.
+        1. 6 -> "0+1+2+3+4+5+6 = 21"
+        2. -15 -> "-15<0"
+        3. 0 -> "0=0" */
+
+        System.out.println(showSequence(6));
+        System.out.println(showSequence(-15));
+        System.out.println(showSequence(0));
+    }
+
+    public static String showSequence(int value){
+        int sum = 0;
+        String str = "";
+        String newStr = "";
+        String res = "";
+        if(value > 0){
+            for(int i = 0; i <= value; i++){
+                sum += i;
+                str += i + "+";
+                newStr = str.substring(0, str.length()-1);
+                res = newStr + " = " + sum;
+            }
+        }
+        else if (value < 0){
+            res = value + "<0";
+        }
+        else {
+            res = "0=0";
+        } return res;
+    }
 }
 
 
