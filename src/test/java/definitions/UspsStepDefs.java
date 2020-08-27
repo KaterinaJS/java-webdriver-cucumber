@@ -186,4 +186,49 @@ public class UspsStepDefs {
         getDriver().findElement(By.xpath("(//div[contains(@class, 'list-item-location')])[1]")).click();
         assertThat(getDriver().findElement(By.xpath("//p[@class='ask-usps']")).getText().contains(phone));
     }
+
+    @When("I go to {string} under {string}")
+    public void iGoToUnder(String option, String menu) {
+        WebElement menuTab = getDriver().findElement(By.xpath("//a[@class='menuitem'][text()='" + menu + "']"));
+        WebElement tool = getDriver().findElement(By.xpath("//a[text()='" + option + "']"));
+
+        new Actions(getDriver())
+                .moveToElement(menuTab)
+                .click(tool)
+                .perform();
+    }
+
+    @And("I search for {string}")
+    public void iSearchFor(String address) {
+        getDriver().findElement(By.xpath("//input[@id='address']")).sendKeys(address);
+        getDriver().findElement(By.xpath("//fieldset//button[@type='submit']")).click();
+    }
+
+    @And("I click {string} on the map")
+    public void iClickOnTheMap(String button) {
+
+        WebElement overlay = getDriver().findElement(By.xpath("//div[@id='eddm_overlay-progress']"));
+        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+        wait.until(ExpectedConditions.visibilityOf(overlay));
+        wait.until(ExpectedConditions.invisibilityOf(overlay));
+
+        getDriver().findElement(By.xpath("//a[text()='" + button + " ']")).click();
+    }
+
+    @When("I click {string} on the table")
+    public void iClickOnTheTable(String function) {
+        getDriver().findElement(By.xpath("//a[contains(text(),'" + function + "')]")).click();
+    }
+
+    @And("I close modal window")
+    public void iCloseModalWindow() {
+        getDriver().findElement(By.xpath("//div[@id='modal-box-closeModal']")).click();
+    }
+
+    @Then("I verify that summary of all rows of Cost column is equal Approximate Cost in Order Summary")
+    public void iVerifyThatSummaryOfAllRowsOfCostColumnIsEqualApproximateCostInOrderSummary() {
+       getDriver().findElements(By.xpath("//td[@style='width:67px;']")).toString();
+
+
+    }
 }

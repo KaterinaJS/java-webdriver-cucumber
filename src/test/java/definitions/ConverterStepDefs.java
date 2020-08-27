@@ -27,6 +27,6 @@ public class ConverterStepDefs {
     @Then("I enter into From field {string} and verify {string} result")
     public void iEnterIntoFromFieldAndVerifyResult(String numberFrom, String numberTo) {
         getDriver().findElement(By.xpath("//input[@name='fromVal']")).sendKeys(numberFrom);
-        assertThat(getDriver().findElement(By.xpath("//input[@name='toVal']")).getAttribute("value").equals(numberTo));
+        assertThat(getDriver().findElement(By.xpath("//input[@name='toVal']")).getText().contains(numberTo));
     }
 }
