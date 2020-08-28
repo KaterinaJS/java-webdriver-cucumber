@@ -66,3 +66,7 @@ Feature: Java feature
   @java14
   Scenario: Empty array (Slava)
     Given I check if array is empty (Slava)
+
+  @java15
+  Scenario: Print reversed string
+    Given I print reversed string
