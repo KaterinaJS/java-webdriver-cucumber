@@ -62,3 +62,7 @@ Feature: Java feature
   @java13
   Scenario: String array contains another element
     Given I check if a String array contains another element (with return)
+
+  @java14
+  Scenario: Empty array (Slava)
+    Given I check if array is empty (Slava)

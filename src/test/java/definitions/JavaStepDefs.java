@@ -399,7 +399,7 @@ public class JavaStepDefs {
     public Boolean containsColor(String[] colors, String color) {
         int count = 0;
         for (String col : colors) {
-            if(col.equalsIgnoreCase(color))
+            if (col.equalsIgnoreCase(color))
                 count += 1;
         }
         return count > 0;
@@ -420,4 +420,23 @@ public class JavaStepDefs {
 //        intList.sort((o1, o2) -> o2.length() - o1.length());
         System.out.println(intList);
     }
+
+    @Given("I check if array is empty \\(Slava)")
+    public void iCheckIfArrayIsEmptySlava() {
+        int[] intArr = {5, 6, 8, 9};
+        int[] intEmpty = {};
+        int[] intNull = null;
+        System.out.println(isArrayEmpty(intArr));
+        System.out.println(isArrayEmpty(intNull));
+        System.out.println(isArrayEmpty(intEmpty));
+    }
+
+    boolean isArrayEmpty(int[] arr) {
+        if (arr == null || arr.length == 0){
+            return true;
+        }
+        return false;
+    }
+
+
 }
