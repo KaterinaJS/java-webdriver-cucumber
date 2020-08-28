@@ -70,3 +70,7 @@ Feature: Java feature
   @java15
   Scenario: Print reversed string
     Given I print reversed string
+
+  @java16
+  Scenario: Return reversed string
+    Given I return reversed string

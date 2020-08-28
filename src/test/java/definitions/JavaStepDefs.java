@@ -452,4 +452,19 @@ public class JavaStepDefs {
         }
         System.out.println();
     }
+
+    @Given("I return reversed string")
+    public void iReturnReversedString() {
+        String str = "WebDriver";
+        System.out.println(getReversed(str));
+    }
+
+    String getReversed(String str) {
+        System.out.println("Return reversed " + str);
+        String reversed = "";
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reversed += str.charAt(i);
+        }
+        return reversed;
+    }
 }
