@@ -35,4 +35,12 @@ Feature: Marketing test suite
     And I verify document list contains "Document 2"
     And I fill out required fields
 
+  @market4
+  Scenario: Required fields for quote
+    Given I go to "quote" page
+    And I print page details
+    When I fill out required fields for "user"
+    And I submit the form
+    Then I verify required fields for "user"
+
 

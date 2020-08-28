@@ -13,7 +13,10 @@ import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import support.TestContext;
 
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static support.TestContext.getData;
 import static support.TestContext.getDriver;
 
 public class MarketStepDefs {
@@ -212,5 +215,36 @@ public class MarketStepDefs {
 
         // switch back to original window
         getDriver().switchTo().window(originalWindow);
+    }
+
+    @When("I fill out required fields for {string}")
+    public void iFillOutRequiredFields(String role) {
+        Map<String, String> user = getData(role);
+
+        getDriver().findElement(By.xpath("//input[@name='username']")).sendKeys(user.get("username"));
+        getDriver().findElement(By.xpath("//input[@name='email']")).sendKeys(user.get("email"));
+        getDriver().findElement(By.xpath("//input[@id='password']")).sendKeys(user.get("password"));
+        getDriver().findElement(By.xpath("//input[@id='confirmPassword']")).sendKeys(user.get("password"));
+
+        getDriver().findElement(By.xpath("//input[@id='name']")).click();
+        getDriver().findElement(By.xpath("//input[@id='firstName']")).sendKeys(user.get("firstName"));
+        getDriver().findElement(By.xpath("//input[@id='lastName']")).sendKeys(user.get("lastName"));
+        getDriver().findElement(By.xpath("//span[text()='Save']")).click();
+        getDriver().findElement(By.xpath("//input[@name='agreedToPrivacyPolicy']")).click();
+    }
+
+    @Then("I verify required fields for {string}")
+    public void iVerifyRequiredFields(String role) {
+        Map<String, String> user = getData(role);
+        String result = getDriver().findElement(By.xpath("//div[@id='quotePageResult']")).getText();
+        System.out.println(result);
+
+        assertThat(result).containsIgnoringCase(user.get("username"));
+        assertThat(result).containsIgnoringCase(user.get("email"));
+        assertThat(result).doesNotContain(user.get("password"));
+        assertThat(result).contains(user.get("firstName") + " " + user.get("lastName"));
+
+        String privacyPolicy = getDriver().findElement(By.xpath("//b[@name='agreedToPrivacyPolicy']")).getText();
+        assertThat(privacyPolicy).isEqualTo("true");
     }
 }
