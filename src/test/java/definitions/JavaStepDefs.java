@@ -424,11 +424,11 @@ public class JavaStepDefs {
     @Given("I check if array is empty \\(Slava)")
     public void iCheckIfArrayIsEmptySlava() {
         int[] intArr = {5, 6, 8, 9};
-        int[] intEmpty = {};
-        int[] intNull = null;
+        int[] emptyArr = {};
+        int[] nullArr = null;
         System.out.println(isArrayEmpty(intArr));
-        System.out.println(isArrayEmpty(intNull));
-        System.out.println(isArrayEmpty(intEmpty));
+        System.out.println(isArrayEmpty(emptyArr));
+        System.out.println(isArrayEmpty(nullArr));
     }
 
     boolean isArrayEmpty(int[] arr) {
