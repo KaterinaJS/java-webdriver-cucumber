@@ -13,7 +13,7 @@
       Then I verify shipment form is reset
 
     @ups2
-    Scenario: UPS end to end 3
+    Scenario: UPS end to end full
       Given	I go to "ups" page
       And I open Shipping menu
       And I go to Create a Shipment
