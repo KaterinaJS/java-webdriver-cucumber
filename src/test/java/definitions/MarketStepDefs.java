@@ -44,6 +44,9 @@ public class MarketStepDefs {
             case "calculator":
                 getDriver().get("https://www.calculator.net/");
                 break;
+            case "ups":
+                getDriver().get("https://www.ups.com/us/en/Home.page");
+                break;
             default:
                 throw new RuntimeException("Unsupported page! " + page);
         }

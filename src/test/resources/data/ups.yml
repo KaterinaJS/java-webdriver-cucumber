@@ -1,0 +1,10 @@
+country: United	States
+name: Administrator
+address: "4970 El Camino Real"
+zip: "94022"
+email: mail@example.com
+phone: "1234567890"
+
+nameToSend: John Doe
+addressToSend: "870 7th Ave"
+zipToSend: "10019"
