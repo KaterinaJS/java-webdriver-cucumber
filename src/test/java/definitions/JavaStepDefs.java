@@ -432,7 +432,7 @@ public class JavaStepDefs {
     }
 
     boolean isArrayEmpty(int[] arr) {
-        if (arr == null || arr.length == 0){
+        if (arr == null || arr.length == 0) {
             return true;
         }
         return false;
@@ -467,4 +467,27 @@ public class JavaStepDefs {
         }
         return reversed;
     }
+
+    @Given("I reverse every third character of a reversed string")
+    public void iReverseEveryThirdCharacterOfAReversedString() {
+//        Example: "WebDriver" => "vDW"
+        System.out.println(reverse3thChar("WebDriver"));
+    }
+
+    public String reverse3thChar(String str) {
+        String reversedStr = "";
+        String result = "";
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reversedStr += str.charAt(i);
+        }
+        for (int j = 1; j <= reversedStr.length(); j++) {
+            if (j % 3 == 0) {
+                result += reversedStr.charAt(j - 1);
+            } else {
+                result += "";
+            }
+        }
+        return result;
+    }
+
 }

@@ -74,3 +74,7 @@ Feature: Java feature
   @java16
   Scenario: Return reversed string
     Given I return reversed string
+
+  @java17
+  Scenario: Reverse every third character of a reversed string
+    Given I reverse every third character of a reversed string
