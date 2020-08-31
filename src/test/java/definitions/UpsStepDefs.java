@@ -15,6 +15,9 @@ import static support.TestContext.*;
 
 
 public class UpsStepDefs {
+
+    Map<String, String> data = getData("ups");
+
     @And("I open Shipping menu")
     public void iOpenShippingMenu() {
         getDriver().findElement(By.xpath("//a[@id='ups-menuLinks2']")).click();
@@ -30,17 +33,20 @@ public class UpsStepDefs {
         Select countrySelect = new Select(getDriver().findElement(By.xpath("//select[@id='origincountry']")));
         countrySelect.selectByVisibleText("United States");
 
-        getDriver().findElement(By.xpath("//input[@id='originname']")).sendKeys("Administrator");
-        getDriver().findElement(By.xpath("//input[@id='originaddress1']")).sendKeys("4970 El Camino Real");
-        getDriver().findElement(By.xpath("//input[@id='originpostal']")).sendKeys("94022");
+
+
+        getDriver().findElement(By.xpath("//input[@id='originname']")).sendKeys(data.get("name"));
+        getDriver().findElement(By.xpath("//input[@id='originaddress1']")).sendKeys(data.get("address"));
+        getDriver().findElement(By.xpath("//input[@id='originpostal']")).sendKeys(data.get("zip"));
 
         WebElement city = getDriver().findElement(By.xpath("//input[@id='origincity']"));
         WebElement state = getDriver().findElement(By.xpath("//select[@id='originstate']"));
         getWait().until(ExpectedConditions.attributeToBeNotEmpty(city, "value"));
         getWait().until(ExpectedConditions.attributeToBeNotEmpty(state, "value"));
 
-        getDriver().findElement(By.xpath("//input[@id='originemail']")).sendKeys("mail@example.com");
-        getDriver().findElement(By.xpath("//input[@id='originphone']")).sendKeys("1234567890");
+
+        getDriver().findElement(By.xpath("//input[@id='originemail']")).sendKeys(data.get("email"));
+        getDriver().findElement(By.xpath("//input[@id='originphone']")).sendKeys(data.get("phone"));
     }
 
     @And("I submit the shipment form")
@@ -52,11 +58,11 @@ public class UpsStepDefs {
     @Then("I verify origin shipment fields submitted")
     public void iVerifyOriginShipmentFieldsSubmitted() {
         String result = getDriver().findElement(By.xpath("//div[@class='ups-section']")).getText();
-        assertThat(result.contains("Administrator"));
-        assertThat(result.contains("4970 El Camino Real"));
-        assertThat(result.contains("94022"));
-        assertThat(result.contains("mail@example.com"));
-        assertThat(result.contains("1234567890"));
+        assertThat(result.contains(data.get("name")));
+        assertThat(result.contains(data.get("address")));
+        assertThat(result.contains(data.get("zip")));
+        assertThat(result.contains(data.get("email")));
+        assertThat(result.contains(data.get("phone")));
     }
 
     @And("I cancel the shipment form")
@@ -69,10 +75,10 @@ public class UpsStepDefs {
 
     @Then("I verify shipment form is reset")
     public void iVerifyShipmentFormIsReset() {
-        assertThat(getDriver().findElement(By.xpath("//input[@id='originname']")).getText().contains("Administrator")).isFalse();
-        assertThat(getDriver().findElement(By.xpath("//input[@id='originaddress1']")).getText().contains("4970 El Camino Real")).isFalse();
-        assertThat(getDriver().findElement(By.xpath("//input[@id='originpostal']")).getText().contains("94022")).isFalse();
-        assertThat(getDriver().findElement(By.xpath("//input[@id='originemail']")).getText().contains("mail@example.com")).isFalse();
-        assertThat(getDriver().findElement(By.xpath("//input[@id='originphone']")).getText().contains("1234567890")).isFalse();
+        assertThat(getDriver().findElement(By.xpath("//input[@id='originname']")).getText().contains(data.get("name"))).isFalse();
+        assertThat(getDriver().findElement(By.xpath("//input[@id='originaddress1']")).getText().contains(data.get("address"))).isFalse();
+        assertThat(getDriver().findElement(By.xpath("//input[@id='originpostal']")).getText().contains(data.get("zip"))).isFalse();
+        assertThat(getDriver().findElement(By.xpath("//input[@id='originemail']")).getText().contains(data.get("email"))).isFalse();
+        assertThat(getDriver().findElement(By.xpath("//input[@id='originphone']")).getText().contains(data.get("phone"))).isFalse();
     }
 }
