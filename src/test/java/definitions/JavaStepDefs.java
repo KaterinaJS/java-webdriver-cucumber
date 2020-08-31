@@ -490,4 +490,18 @@ public class JavaStepDefs {
         return result;
     }
 
+    @Given("I reverse words in a sentence")
+    public void iReverseWordsInASentence() {
+//        Example: "I am Automation Engineer" => "Engineer Automation am I"
+        System.out.print(reverseWords("I am Automation Engineer"));
+    }
+
+    public String reverseWords(String sentence){
+        String result = "";
+        String[] sentenceArr = sentence.split(" ");
+        for(int i = sentenceArr.length - 1; i >= 0; i --){
+            result += sentenceArr[i] + " ";
+        }
+        return result;
+    }
 }

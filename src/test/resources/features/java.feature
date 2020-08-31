@@ -78,3 +78,7 @@ Feature: Java feature
   @java17
   Scenario: Reverse every third character of a reversed string
     Given I reverse every third character of a reversed string
+
+  @java18
+  Scenario: Reverse words in a sentence
+    Given I reverse words in a sentence
