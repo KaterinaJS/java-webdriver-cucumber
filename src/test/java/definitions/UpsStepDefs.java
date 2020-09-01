@@ -33,8 +33,6 @@ public class UpsStepDefs {
         Select countrySelect = new Select(getDriver().findElement(By.xpath("//select[@id='origincountry']")));
         countrySelect.selectByVisibleText("United States");
 
-
-
         getDriver().findElement(By.xpath("//input[@id='originname']")).sendKeys(data.get("name"));
         getDriver().findElement(By.xpath("//input[@id='originaddress1']")).sendKeys(data.get("address"));
         getDriver().findElement(By.xpath("//input[@id='originpostal']")).sendKeys(data.get("zip"));
@@ -43,7 +41,6 @@ public class UpsStepDefs {
         WebElement state = getDriver().findElement(By.xpath("//select[@id='originstate']"));
         getWait().until(ExpectedConditions.attributeToBeNotEmpty(city, "value"));
         getWait().until(ExpectedConditions.attributeToBeNotEmpty(state, "value"));
-
 
         getDriver().findElement(By.xpath("//input[@id='originemail']")).sendKeys(data.get("email"));
         getDriver().findElement(By.xpath("//input[@id='originphone']")).sendKeys(data.get("phone"));
