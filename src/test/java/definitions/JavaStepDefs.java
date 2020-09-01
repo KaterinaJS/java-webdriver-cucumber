@@ -504,4 +504,25 @@ public class JavaStepDefs {
         }
         return result;
     }
+
+    @Given("I check if array contains another element \\(Slava version)")
+    public void iCheckIfArrayContainsAnotherElementSlavaVersion() {
+        String[] strArr = {"apple", "kiwi", "orange"};
+        String strOtherEl = "kiwi";
+        Integer[] intArr = {5, 4, 3, 8, 5};
+        Integer otherEl = 8;
+        System.out.println(isContaining(strArr, strOtherEl));
+        System.out.println(isContaining(intArr, otherEl));
+    }
+
+    // O(n)
+    boolean isContaining(Object[] arr, Object otherElement) {
+        System.out.println("isContaining() method");
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].equals(otherElement)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

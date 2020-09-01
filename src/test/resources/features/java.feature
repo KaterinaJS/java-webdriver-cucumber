@@ -82,3 +82,7 @@ Feature: Java feature
   @java18
   Scenario: Reverse words in a sentence
     Given I reverse words in a sentence
+
+  @java19
+  Scenario: Array contains another element (Slava)
+    Given I check if array contains another element (Slava version)
