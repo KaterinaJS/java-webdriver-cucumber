@@ -525,4 +525,24 @@ public class JavaStepDefs {
         }
         return false;
     }
+
+    @Given("I find max element in the array")
+    public void iFindMaxElementInTheArray() {
+        int[] arr = {-5, -4, -3, -8, -4};
+        System.out.println(maxNum(arr));
+    }
+
+    // O(n)
+    int maxNum(int[] arr) {
+        System.out.println("Max num");
+        int max = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (max < arr[i]) {
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+
+
 }

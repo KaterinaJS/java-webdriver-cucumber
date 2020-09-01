@@ -86,3 +86,7 @@ Feature: Java feature
   @java19
   Scenario: Array contains another element (Slava)
     Given I check if array contains another element (Slava version)
+
+  @java20
+  Scenario: Max element in the array
+    Given I find max element in the array
