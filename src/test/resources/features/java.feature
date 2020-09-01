@@ -94,3 +94,7 @@ Feature: Java feature
   @java21
   Scenario: Reverse a string without extra variable
     Given I reverse a string without extra variable
+
+  @java22
+  Scenario: Sorting an array
+    Given I sort an array

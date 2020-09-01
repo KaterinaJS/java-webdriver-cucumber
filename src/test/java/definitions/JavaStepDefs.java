@@ -558,5 +558,24 @@ public class JavaStepDefs {
         return str.substring(str.length() / 2);
     }
 
+    @Given("I sort an array")
+    public void iSortAnArray() {
+        int[] unsortedArr = {5, 8, 7, 5, 1};
+        System.out.println(Arrays.toString(sort(unsortedArr)));
+    }
+
+    int[] sort(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+
 
 }
