@@ -90,3 +90,7 @@ Feature: Java feature
   @java20
   Scenario: Max element in the array
     Given I find max element in the array
+
+  @java21
+  Scenario: Reverse a string without extra variable
+    Given I reverse a string without extra variable

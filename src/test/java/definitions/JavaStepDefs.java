@@ -544,5 +544,19 @@ public class JavaStepDefs {
         return max;
     }
 
+    @Given("I reverse a string without extra variable")
+    public void iReverseAStringWithoutExtraVariable() {
+        String str = "WebDriver";
+        System.out.println(getReversedNoVar(str));
+    }
+
+    String getReversedNoVar(String str) {
+        System.out.println("Return reversed no extra var " + str);
+        for (int i = str.length() - 1; i >= 0; i--) {
+            str += str.charAt(i);
+        }
+        return str.substring(str.length() / 2);
+    }
+
 
 }
