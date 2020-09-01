@@ -431,6 +431,7 @@ public class JavaStepDefs {
         System.out.println(isArrayEmpty(nullArr));
     }
 
+    // O(1)
     boolean isArrayEmpty(int[] arr) {
         if (arr == null || arr.length == 0) {
             return true;
@@ -459,6 +460,7 @@ public class JavaStepDefs {
         System.out.println(getReversed(str));
     }
 
+    // O(n)
     String getReversed(String str) {
         System.out.println("Return reversed " + str);
         String reversed = "";
