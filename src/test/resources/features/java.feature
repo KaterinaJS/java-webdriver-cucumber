@@ -98,3 +98,7 @@ Feature: Java feature
   @java22
   Scenario: Sorting an array
     Given I sort an array
+
+  @java23
+  Scenario: Find 2 max numbers in an array
+    Given I find two max numbers in an array

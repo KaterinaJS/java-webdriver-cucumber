@@ -2,10 +2,7 @@ package definitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
-import org.apache.logging.log4j.core.util.JsonUtils;
-import org.w3c.dom.ls.LSOutput;
 
-import java.sql.Array;
 import java.util.*;
 
 public class JavaStepDefs {
@@ -498,10 +495,10 @@ public class JavaStepDefs {
         System.out.print(reverseWords("I am Automation Engineer"));
     }
 
-    public String reverseWords(String sentence){
+    public String reverseWords(String sentence) {
         String result = "";
         String[] sentenceArr = sentence.split(" ");
-        for(int i = sentenceArr.length - 1; i >= 0; i --){
+        for (int i = sentenceArr.length - 1; i >= 0; i--) {
             result += sentenceArr[i] + " ";
         }
         return result;
@@ -579,5 +576,24 @@ public class JavaStepDefs {
         return arr;
     }
 
+    @Given("I find two max numbers in an array")
+    public void iFindTwoMaxNumbersInAnArray() {
+        int[] array = {5, 8, 7, 5, 1};
+        twoMaxElements(array);
+    }
 
+    public void twoMaxElements(int[] arr) {
+        int max1 = 0;
+        int max2 = 0;
+        for (int num : arr) {
+            if (max1 < num) {
+                max2 = max1;
+                max1 = num;
+            } else if (max2 < num) {
+                max2 = num;
+            }
+        }
+        System.out.println("First max number: " + max1);
+        System.out.println("Second max number: " + max2);
+    }
 }
