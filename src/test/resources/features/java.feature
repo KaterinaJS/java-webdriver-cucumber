@@ -102,3 +102,15 @@ Feature: Java feature
   @java23
   Scenario: Find 2 max numbers in an array
     Given I find two max numbers in an array
+
+  @java24
+  Scenario: Check if array contains duplicates
+    Given I check if array contains duplicates
+
+  @java25
+  Scenario: Check if word is palindrome
+    Given I check if word is palindrome
+
+  @java26
+  Scenario: Count number of each character in a string
+    Given I count number of each character in a string

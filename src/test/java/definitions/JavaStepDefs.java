@@ -596,4 +596,46 @@ public class JavaStepDefs {
         System.out.println("First max number: " + max1);
         System.out.println("Second max number: " + max2);
     }
+
+    @Given("I check if array contains duplicates")
+    public void iCheckIfArrayContainsDuplicates() {
+        String[] strArr = {"orange", "apple", "kiwi"};
+        Integer[] intArr = {5, 4, 3, 8, 5};
+        System.out.println(ifContainsDuplicates(strArr));
+        System.out.println(ifContainsDuplicates(intArr));
+
+    }
+
+    boolean ifContainsDuplicates(Object[] arr){
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] != null && arr[i].equals(arr[j])) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Given("I check if word is palindrome")
+    public void iCheckIfWordIsPalindrome() {
+        System.out.println(isPalindrome("Anna"));
+        System.out.println(isPalindrome("Refer"));
+        System.out.println(isPalindrome("noon"));
+        System.out.println(isPalindrome("hello"));
+        System.out.println(isPalindrome("day"));
+    }
+
+    boolean isPalindrome(String word){
+        String reversedWord = "";
+        for (int i = word.length() - 1; i >= 0; i--) {
+            reversedWord += word.charAt(i);
+            if(word.equalsIgnoreCase(reversedWord)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
