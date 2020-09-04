@@ -638,4 +638,22 @@ public class JavaStepDefs {
     }
 
 
+    @Given("I check if word is palindrome \\(Slava)")
+    public void iCheckIfWordIsPalindromeSlava() {
+        System.out.println(isItPalindrome("anna"));
+        System.out.println(isItPalindrome("refer"));
+        System.out.println(isItPalindrome("noon"));
+        System.out.println(isItPalindrome("hello"));
+        System.out.println(isItPalindrome("day"));
+    }
+
+    boolean isItPalindrome(String word){
+        int j = 0;
+        for(int i = word.length() - 1; i >= 0; i--){
+            if(word.charAt(i) != word.charAt(j)){
+                return false;
+            }
+            j++;
+        } return true;
+    }
 }

@@ -114,3 +114,7 @@ Feature: Java feature
   @java26
   Scenario: Count number of each character in a string
     Given I count number of each character in a string
+
+  @java27
+  Scenario: Check if word is palindrome (Slava)
+    Given I check if word is palindrome (Slava)
