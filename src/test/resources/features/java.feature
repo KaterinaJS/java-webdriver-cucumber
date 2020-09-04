@@ -130,3 +130,7 @@ Feature: Java feature
   @java30
   Scenario: Factorial
     Given I solve factorial task
+
+  @java31
+  Scenario: Sum of two elements in an array is a number
+    Given I find if sum of two elements in an array is a number

@@ -701,4 +701,24 @@ public class JavaStepDefs {
         }
         return num * factorial(num - 1);
     }
+
+    @Given("I find if sum of two elements in an array is a number")
+    public void iFindIfSumOfTwoElementsInAnArrayIsANumber() {
+        int[] arr = {5, 8, 7, 5, 1};
+        System.out.println(findSum(arr, 6));
+        System.out.println(findSum(arr, 8));
+        System.out.println(findSum(arr, 5));
+    }
+
+    boolean findSum(int[] arr, int sum) {
+        System.out.println("findSum for " + sum);
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] + arr[j] == sum) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
