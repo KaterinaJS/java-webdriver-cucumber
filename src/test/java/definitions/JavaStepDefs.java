@@ -688,4 +688,17 @@ public class JavaStepDefs {
         }
         return true;
     }
+
+    @Given("I solve factorial task")
+    public void iSolveFactorialTask() {
+        System.out.println(factorial(0));
+        System.out.println(factorial(5));
+    }
+
+    long factorial(long num) {
+        if (num == 0) {
+            return 1;
+        }
+        return num * factorial(num - 1);
+    }
 }

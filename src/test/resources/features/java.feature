@@ -126,3 +126,7 @@ Feature: Java feature
   @java29
   Scenario: Check if word is palindrome (S2)
     Given I check if word is palindrome (S2V)
+
+  @java30
+  Scenario: Factorial
+    Given I solve factorial task
