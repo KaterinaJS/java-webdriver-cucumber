@@ -1,26 +1,13 @@
 package pages;
 
-public class Cat {
+public class Cat extends Animal {
 
-    private String name;
-
-    public Cat(String name){
+    public Cat(String name) {
         this.name = name;
     }
 
-    public void walk(){
-        System.out.println(getClass() + " " + name + " is walking");
+    public void speak() {
+        System.out.println(classAndName() + " is meowing!");
     }
 
-    public void sleep(){
-        System.out.println(getClass() + " " + name + " is sleeping");
-    }
-
-    public void speak(){
-        System.out.println(getClass() + " " + name + " is speaking");
-    }
-
-    public void eat(String  what){
-        System.out.println(getClass() + " " + name + " is eating " + what);
-    }
 }

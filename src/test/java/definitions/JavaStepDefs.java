@@ -2,7 +2,9 @@ package definitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import pages.Animal;
 import pages.Cat;
+import pages.Dog;
 
 import java.util.*;
 
@@ -660,11 +662,33 @@ public class JavaStepDefs {
 
     @Given("I work with classes")
     public void iWorkWithClasses() {
-        Cat cat = new Cat("Tom");
+        Animal cat = new Cat("Tom");
+        System.out.println(cat.getName());
         cat.walk();
-        cat.eat("fish");
         cat.sleep();
         cat.speak();
+        cat.eat("fish");
+
+        Animal dog = new Dog();
+        System.out.println(dog.getName());
+        dog.walk();
+        dog.sleep();
+        dog.speak();
+        dog.eat("bone");
+
+        List<Animal> list = new ArrayList<>();
+        list.add(cat);
+        list.add(dog);
+        printAnimalNames(list);
+
+    }
+
+    public void printAnimalNames(List<Animal> animals) {
+        System.out.println("print names method");
+        for (Animal animal : animals) {
+            animal.speak();
+            System.out.println(animal.getName());
+        }
     }
 
     @Given("I check if word is palindrome \\(S2V)")
