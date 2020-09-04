@@ -118,3 +118,11 @@ Feature: Java feature
   @java27
   Scenario: Check if word is palindrome (Slava)
     Given I check if word is palindrome (Slava)
+
+  @java28
+  Scenario: Classes
+    Given I work with classes
+
+  @java29
+  Scenario: Check if word is palindrome (S2)
+    Given I check if word is palindrome (S2V)

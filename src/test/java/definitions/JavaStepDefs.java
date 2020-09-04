@@ -2,6 +2,7 @@ package definitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import pages.Cat;
 
 import java.util.*;
 
@@ -655,5 +656,36 @@ public class JavaStepDefs {
             }
             j++;
         } return true;
+    }
+
+    @Given("I work with classes")
+    public void iWorkWithClasses() {
+        Cat cat = new Cat("Tom");
+        cat.walk();
+        cat.eat("fish");
+        cat.sleep();
+        cat.speak();
+    }
+
+    @Given("I check if word is palindrome \\(S2V)")
+    public void iCheckIfWordIsPalindromeS() {
+        System.out.println(isPalindromeOtherWay("anna"));
+        System.out.println(isPalindromeOtherWay("refer"));
+        System.out.println(isPalindromeOtherWay("noon"));
+        System.out.println(isPalindromeOtherWay("hello"));
+        System.out.println(isPalindromeOtherWay("day"));
+    }
+
+    // O(n)
+    boolean isPalindromeOtherWay(String word) {
+        System.out.println("isPalindrome check for " + word);
+        int j = 0;
+        for (int i = word.length() - 1; i > word.length() / 2; i--) {
+            if (word.charAt(i) != word.charAt(j)) {
+                return false;
+            }
+            j++;
+        }
+        return true;
     }
 }
