@@ -26,6 +26,8 @@ public abstract class Animal {
 
     public abstract void speak();
 
+
+
     public void eat(String what) {
         System.out.println(classAndName() + " is eating " + what);
     }

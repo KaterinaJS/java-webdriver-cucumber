@@ -8,4 +8,8 @@ public class Parrot extends Animal {
     public void speak() {
         System.out.println(classAndName() + " is chirping!");
     }
+
+    public void fly() {
+        System.out.println(classAndName() + " is flying!");
+    }
 }
