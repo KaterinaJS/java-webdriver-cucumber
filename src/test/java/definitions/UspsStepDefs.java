@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -161,11 +162,14 @@ public class UspsStepDefs {
 
     @When("I go to {string} tab")
     public void iGoToTab(String tab) {
-        getDriver().findElement(By.xpath("//a[@class='menuitem'][contains(@href, 'faq')]")).click();
+//        getDriver().findElement(By.xpath("//a[@class='menuitem'][contains(@href, 'faq')]")).click();
+
+        getActions().moveToElement(getDriver().findElement(By.xpath("//a[text()='" + tab + "']"))).perform();
     }
 
     @And("I perform {string} help search")
     public void iPerformHelpSearch(String search) {
+        getDriver().findElement(By.xpath("//div[@class='repos']//a[contains(@href,'faq')]")).click();
         getDriver().findElement(By.xpath("//input[contains(@placeholder, 'Search')]")).sendKeys(search);
         getDriver().findElement(By.xpath("//button[contains(@class,'search-button')]")).click();
     }
@@ -287,4 +291,32 @@ public class UspsStepDefs {
         assertThat(actualTotal).isCloseTo(expectedTotal, Percentage.withPercentage(1));
     }
 
+    @And("I enter {string} into store search")
+    public void iEnterIntoStoreSearch(String storeNumber) {
+        getDriver().findElement(By.xpath("//input[@id='global-header--search-track-store']")).sendKeys(storeNumber);
+        getDriver().findElement(By.xpath("//input[@id='global-header--search-track-store']/../input[@value='Search']")).click();
+    }
+
+    @Then("I search and validate no products found")
+    public void iSearchAndValidateNoProductsFound() {
+        WebElement result = getDriver().findElement(By.xpath("//div[@class='no-product']/p"));
+        assertThat(result.isDisplayed());
+        assertThat(result.getText().contains("not match any products"));
+    }
+
+    @And("choose mail service Priority Mail")
+    public void chooseMailServicePriorityMail() {
+       getExecutor().executeScript("arguments[0].click();", getDriver().findElement(By.xpath("(//label[contains(@for,'Service-Priority')])[1]")));
+//        getDriver().findElement(By.xpath("(//label[contains(@for,'Service-Priority')])[1]")).click();
+    }
+
+    @Then("I verify {int} items found")
+    public void iVerifyItemsFound(int count) {
+//        By stamps = By.xpath("//div[@class='result-product-img']//img");
+//        List<WebElement> countStamps = new ArrayList<>();
+//        countStamps.add(getDriver().findElement(stamps));
+//        System.out.println("Expected elements size: " + countStamps.size());
+
+
+    }
 }

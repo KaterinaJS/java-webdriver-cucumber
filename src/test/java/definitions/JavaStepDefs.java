@@ -5,6 +5,7 @@ import cucumber.api.java.en.Given;
 import pages.Animal;
 import pages.Cat;
 import pages.Dog;
+import pages.Parrot;
 
 import java.util.*;
 
@@ -676,9 +677,17 @@ public class JavaStepDefs {
         dog.speak();
         dog.eat("bone");
 
+        Animal parrot = new Parrot("Jack");
+        System.out.println(parrot.getName());
+        parrot.walk();
+        parrot.sleep();
+        parrot.speak();
+        parrot.eat("seeds");
+
         List<Animal> list = new ArrayList<>();
         list.add(cat);
         list.add(dog);
+        list.add(parrot);
         printAnimalNames(list);
 
     }
