@@ -6,4 +6,8 @@ public class Dog extends Animal {
         System.out.println(classAndName() + " is barking");
     }
 
+    public void fly() {
+        System.out.println(classAndName() + " can not fly");
+    }
+
 }

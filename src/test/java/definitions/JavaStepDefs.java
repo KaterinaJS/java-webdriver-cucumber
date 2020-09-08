@@ -683,6 +683,7 @@ public class JavaStepDefs {
         parrot.sleep();
         parrot.speak();
         parrot.eat("seeds");
+        parrot.fly();
 
 
         List<Animal> list = new ArrayList<>();

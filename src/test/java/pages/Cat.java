@@ -10,4 +10,8 @@ public class Cat extends Animal {
         System.out.println(classAndName() + " is meowing!");
     }
 
+    public void fly() {
+        System.out.println(classAndName() + " can not fly");
+    }
+
 }

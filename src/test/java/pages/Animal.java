@@ -26,6 +26,8 @@ public abstract class Animal {
 
     public abstract void speak();
 
+    public abstract void fly();
+
 
 
     public void eat(String what) {
