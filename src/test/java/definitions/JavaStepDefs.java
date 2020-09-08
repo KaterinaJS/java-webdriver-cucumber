@@ -666,13 +666,15 @@ public class JavaStepDefs {
         cat.sleep();
         cat.speak();
         cat.eat("fish");
+        cat.swim();
 
-        Animal dog = new Dog();
+        Animal dog = new Dog("Max");
         System.out.println(dog.getName());
         dog.walk();
         dog.sleep();
         dog.speak();
         dog.eat("bone");
+        dog.swim();
 
         Animal parrot = new Parrot("Jack");
         System.out.println(parrot.getName());
@@ -682,13 +684,11 @@ public class JavaStepDefs {
         parrot.eat("seeds");
         parrot.fly();
 
-        Animal fish = new Fish("Lucky");
+        Animal fish = new Fish();
         System.out.println(fish.getName());
-        fish.walk();
         fish.sleep();
-        fish.speak();
         fish.eat("worms");
-        fish.fly();
+        fish.swim();
 
 
         List<Animal> list = new ArrayList<>();

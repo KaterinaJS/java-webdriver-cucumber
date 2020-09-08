@@ -16,4 +16,8 @@ public class Parrot extends Animal {
     public void walk() {
         System.out.println(classAndName() + " is walking!");
     }
+
+    public void swim() {
+        System.out.println(classAndName() + " cannot swim!");
+    }
 }

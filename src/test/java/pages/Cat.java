@@ -11,11 +11,15 @@ public class Cat extends Animal {
     }
 
     public void fly() {
-        System.out.println(classAndName() + " can not fly");
+        System.out.println(classAndName() + " cannot fly!");
     }
 
     public void walk() {
         System.out.println(classAndName() + " is walking!");
+    }
+
+    public void swim() {
+        System.out.println(classAndName() + " is swimming!");
     }
 
 }
