@@ -16,9 +16,9 @@ public abstract class Animal {
         this.name = name;
     }
 
-    public void walk() {
-        System.out.println(classAndName() + " is walking!");
-    }
+//    public void walk() {
+//        System.out.println(classAndName() + " is walking!");
+//    }
 
     public void sleep() {
         System.out.println(classAndName() + " is sleeping!");
@@ -27,6 +27,8 @@ public abstract class Animal {
     public abstract void speak();
 
     public abstract void fly();
+
+    public abstract void walk();
 
 
 

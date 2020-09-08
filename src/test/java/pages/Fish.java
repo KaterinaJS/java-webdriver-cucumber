@@ -13,4 +13,8 @@ public class Fish extends Animal {
     public void fly() {
         System.out.println(classAndName() + " cannot fly");
     }
+
+    public void walk() {
+        System.out.println(classAndName() + " cannot walking!");
+    }
 }

@@ -2,10 +2,7 @@ package definitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
-import pages.Animal;
-import pages.Cat;
-import pages.Dog;
-import pages.Parrot;
+import pages.*;
 
 import java.util.*;
 
@@ -685,11 +682,20 @@ public class JavaStepDefs {
         parrot.eat("seeds");
         parrot.fly();
 
+        Animal fish = new Fish("Lucky");
+        System.out.println(fish.getName());
+        fish.walk();
+        fish.sleep();
+        fish.speak();
+        fish.eat("worms");
+        fish.fly();
+
 
         List<Animal> list = new ArrayList<>();
         list.add(cat);
         list.add(dog);
         list.add(parrot);
+        list.add(fish);
         printAnimalNames(list);
 
     }
