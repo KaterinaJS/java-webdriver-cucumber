@@ -312,11 +312,33 @@ public class UspsStepDefs {
 
     @Then("I verify {int} items found")
     public void iVerifyItemsFound(int count) {
-//        By stamps = By.xpath("//div[@class='result-product-img']//img");
-//        List<WebElement> countStamps = new ArrayList<>();
-//        countStamps.add(getDriver().findElement(stamps));
-//        System.out.println("Expected elements size: " + countStamps.size());
+        String result = getDriver().findElement(By.xpath("//h2[contains(@class,'results-per-page')]")).getText();
+        assertThat(result.contains("of " + count + " Results"));
+    }
 
+    @When("I unselect Stamps checkbox")
+    public void iUnselectStampsCheckbox() {
+        getDriver().findElement(By.xpath("//label[contains(@for,'Category-Stamps')]")).click();
+    }
 
+    @And("select Vertical stamp Shape")
+    public void selectVerticalStampShape() {
+        getExecutor().executeScript("arguments[0].click();", getDriver().findElement(By.xpath("//label[contains(@for,'Shape-Vertical')]")));
+    }
+
+    @And("I click Blue color")
+    public void iClickBlueColor() {
+        getExecutor().executeScript("arguments[0].click();", getDriver().findElement(By.xpath("//div[contains(@onclick,'blue/vertical')]")));
+    }
+
+    @Then("I verify {string} and {string} filters")
+    public void iVerifyAndFilters(String color, String shape) {
+        assertThat(getDriver().findElement(By.xpath("//div[@class='cartridge-viewport']//span[text()='" + color + " ']")).isDisplayed());
+        assertThat(getDriver().findElement(By.xpath("//div[@class='cartridge-viewport']//span[text()='" + shape + " ']")).isDisplayed());
+    }
+
+    @And("I verify that items below {int} dollars exists")
+    public void iVerifyThatItemsBelowDollarsExists(int stampCost) {
+        //div[contains(@class,'preview-price')]
     }
 }

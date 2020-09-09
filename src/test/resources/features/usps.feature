@@ -70,7 +70,7 @@ Feature: USPS scenarios
   Scenario: One item found
     Given I go to "usps" page
     When I go to "Stamps" under "Postal Store"
-#    And choose mail service Priority Mail
+    And choose mail service Priority Mail
     Then I verify 1 items found
 
   @usps10
