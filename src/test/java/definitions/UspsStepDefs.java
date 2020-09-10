@@ -363,10 +363,11 @@ public class UspsStepDefs {
     @And("I reserve new PO box for {string}")
     public void iReserveNewPOBoxFor(String zip) {
         getDriver().findElement(By.xpath("//input[@id='searchInput']")).sendKeys(zip);
-        getDriver().findElement(By.xpath("//span[@class='icon-search']")).click();
+        getDriver().findElement(By.xpath("//a[@class='searchBtn']")).click();
     }
 
     @Then("I verify that {string} present")
     public void iVerifyThatPresent(String postOfficeName) {
+        assertThat(getDriver().findElement(By.xpath("//div[@id='locationContainer_1']")).getText().contains(postOfficeName));
     }
 }
