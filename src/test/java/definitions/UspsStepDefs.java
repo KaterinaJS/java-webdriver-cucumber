@@ -127,19 +127,22 @@ public class UspsStepDefs {
     }
 
     @When("I select {string} in results")
-    public void iSelectInResults(String option){
-        getDriver().findElement(By.xpath("//span[text()='Priority Mail | USPS']")).click();
+    public void iSelectInResults(String option) throws InterruptedException {
+//        getDriver().findElement(By.xpath("//span[text()='Priority Mail | USPS']")).click();
+        Thread.sleep(3000);
+        getDriver().findElement(By.xpath("//span[contains(text(),'" + option + "')]")).click();
     }
 
     @And("I click {string} button")
     public void iClickButton(String button) throws InterruptedException {
 //        getDriver().findElement(By.xpath("//a[text()='" + button + " ']")).click();
+        getDriver().findElement(By.xpath("//a[text()='" + button + "']")).click();
 
-        int numOfWin = getDriver().getWindowHandles().size();
-        while (getDriver().getWindowHandles().size() < numOfWin + 1) {
-            getDriver().findElement(By.xpath("//a[contains(text(),'" + button + "')]")).click();
-            Thread.sleep(100);
-        }
+//        int numOfWin = getDriver().getWindowHandles().size();
+//        while (getDriver().getWindowHandles().size() < numOfWin + 1) {
+////            getDriver().findElement(By.xpath("//a[contains(text(),'" + button + "')]")).click();
+//            Thread.sleep(100);
+//        }
     }
 
     @Then("I validate that Sign In is required")
@@ -153,8 +156,8 @@ public class UspsStepDefs {
         getWait(10).until(ExpectedConditions.titleContains("Sign In"));
 
         getDriver().findElement(By.xpath("//button[@id='btn-submit']")).click();
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='error-username']")));
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='error-password']")));
+        getWait(10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='error-username']")));
+        getWait(10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='error-password']")));
 
         // switch back
         getDriver().switchTo().window(originalWindow);
@@ -339,6 +342,31 @@ public class UspsStepDefs {
 
     @And("I verify that items below {int} dollars exists")
     public void iVerifyThatItemsBelowDollarsExists(int stampCost) {
-        //div[contains(@class,'preview-price')]
+
+//        String price = getDriver().findElement(By.xpath("//div[contains(@class,'preview-price')]")).getText();
+//        int costs = Integer.parseInt(price.replaceAll("\\D*", ""));
+
+        By costListSelector = By.xpath("//div[contains(@class,'preview-price')]");
+        List<WebElement> costList = getDriver().findElements(costListSelector);
+
+
+
+
+    }
+
+    @And("verify {string} service exists")
+    public void verifyServiceExists(String serviceName) {
+        Select serviceSelect = new Select(getDriver().findElement(By.xpath("//select[@id='passportappointmentType']")));
+        serviceSelect.selectByVisibleText(serviceName);
+    }
+
+    @And("I reserve new PO box for {string}")
+    public void iReserveNewPOBoxFor(String zip) {
+        getDriver().findElement(By.xpath("//input[@id='searchInput']")).sendKeys(zip);
+        getDriver().findElement(By.xpath("//span[@class='icon-search']")).click();
+    }
+
+    @Then("I verify that {string} present")
+    public void iVerifyThatPresent(String postOfficeName) {
     }
 }

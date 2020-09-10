@@ -23,7 +23,7 @@ Feature: USPS scenarios
     And I set "Mail & Ship" in filters
     Then I verify that "7" results found
     When I select "Priority Mail | USPS" in results
-    And I click "Ship Now" button
+    And I click "Ship Now " button
     Then I validate that Sign In is required
 
   @usps4
@@ -85,7 +85,7 @@ Feature: USPS scenarios
     And I verify that items below 12 dollars exists
 
   @usps11
-  Scenario: Verify location
+  Scenario: Verify location2
     Given I go to "usps" page
     When I perform "Passports" search
     And I select "Passport Application" in results
