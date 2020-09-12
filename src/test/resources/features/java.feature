@@ -139,3 +139,6 @@ Feature: Java feature
   Scenario: Find 2 max numbers in an array SV
     Given I find two max numbers in an array SV
 
+  @java33
+  Scenario: Fibonacci sequence
+    Given I do fibonacci sequence

@@ -784,4 +784,22 @@ public class JavaStepDefs {
         }
         System.out.println("First max: " + max1 + " Second max: " + max2);
     }
+
+    @Given("I do fibonacci sequence")
+    public void iDoFibonacciSequence() {
+        for (int i = 1; i <= 11; i++) {
+            System.out.print(fibFor(i) + " ");
+        }
+    }
+
+    long fibFor(int seq) {
+        long prevFib = 0;
+        long nextFib = 1;
+        for (int i = 1; i < seq; i++) {
+            long temp = nextFib;
+            nextFib = prevFib + nextFib;
+            prevFib = temp;
+        }
+        return nextFib;
+    }
 }
