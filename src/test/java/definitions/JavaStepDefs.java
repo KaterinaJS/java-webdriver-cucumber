@@ -802,4 +802,18 @@ public class JavaStepDefs {
         }
         return nextFib;
     }
+
+    @Given("I do fibonacci sequence with recursion")
+    public void iDoFibonacciSequenceWithRecursion() {
+        for (int i = 1; i <= 11; i++) {
+            System.out.print(fib(i) + " ");
+        }
+    }
+
+    long fib(long num) {
+        if (num == 0 || num == 1) {
+            return num;
+        }
+        return fib(num - 1) + fib(num - 2);
+    }
 }

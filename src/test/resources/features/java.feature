@@ -142,3 +142,7 @@ Feature: Java feature
   @java33
   Scenario: Fibonacci sequence
     Given I do fibonacci sequence
+
+  @java34
+  Scenario: Fibonacci sequence with recursion
+    Given I do fibonacci sequence with recursion
