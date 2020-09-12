@@ -134,3 +134,8 @@ Feature: Java feature
   @java31
   Scenario: Sum of two elements in an array is a number
     Given I find if sum of two elements in an array is a number
+
+  @java32
+  Scenario: Find 2 max numbers in an array SV
+    Given I find two max numbers in an array SV
+

@@ -762,4 +762,26 @@ public class JavaStepDefs {
         }
         return false;
     }
+
+    @Given("I find two max numbers in an array SV")
+    public void iFindTwoMaxNumbersInAnArraySV() {
+        int[] arr1 = {6, 2, 3, 5, 9};
+        int[] arr2 = {6, 2, 9, 5, 7};
+        find2MaxNumbers(arr2);
+    }
+
+    void find2MaxNumbers(int[] arr) {
+        System.out.println("Two max num");
+        int max1 = Integer.MIN_VALUE;
+        int max2 = Integer.MIN_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            if (max1 < arr[i]) {
+                max2 = max1;
+                max1 = arr[i];
+            } else if (max2 < arr[i]) {
+                max2 = arr[i];
+            }
+        }
+        System.out.println("First max: " + max1 + " Second max: " + max2);
+    }
 }
