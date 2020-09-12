@@ -18,7 +18,7 @@ public class QuoteStepDefs {
     QuoteResult result = new QuoteResult();
 
     @Given("I open {string} page")
-    public void iOpenPage(String page) throws InterruptedException {
+    public void iOpenPage(String page) {
         switch (page) {
             case "quote":
                 form.open();
@@ -47,5 +47,12 @@ public class QuoteStepDefs {
     public void iVerifyRequiredFieldsForOop(String role) {
         Map<String, String> user = getData(role);
 
+        assertThat(result.usernameValue().equals(user.get("username"))).isTrue();
+        assertThat(result.emailValue().equals(user.get("email"))).isTrue();
+        assertThat(result.nameValue().equals(user.get("name"))).isTrue();
+        assertThat(result.passwordValue().contains(user.get("password"))).isFalse();
+        assertThat(result.agreedToPrivacyPolicyResultValue().equals("true")).isTrue();
+        assertThat(result.firstNameValue().equals(user.get("firstName"))).isTrue();
+        assertThat(result.lastNameValue().equals(user.get("lastName"))).isTrue();
     }
 }
