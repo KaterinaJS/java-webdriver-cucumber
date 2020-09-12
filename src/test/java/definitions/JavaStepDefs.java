@@ -816,4 +816,41 @@ public class JavaStepDefs {
         }
         return fib(num - 1) + fib(num - 2);
     }
+
+    @Given("I check if a number is prime")
+    public void iCheckIfANumberIsPrime() {
+        System.out.println(isPrime(2));
+        System.out.println(isPrime(1));
+        System.out.println(isPrime(0));
+        System.out.println(isPrime(-4341));
+        System.out.println(isPrime(8));
+        System.out.println(isPrime(9));
+        System.out.println(isPrime(97));
+        System.out.println(isPrime(Integer.MAX_VALUE));
+
+        for (int i = 1; i < 500; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + " ");
+            }
+        }
+    }
+
+    boolean isPrime(int num) {
+        System.out.println("Checking if " + num + " is prime...");
+        if (num < 2) {
+            return false;
+        }
+
+        if (num % 2 == 0 && num != 2) {
+            return false;
+        }
+
+        double sqrt = Math.sqrt(num);
+        for (int i = 3; i <= sqrt; i+=2) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

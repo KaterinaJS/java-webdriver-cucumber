@@ -146,3 +146,7 @@ Feature: Java feature
   @java34
   Scenario: Fibonacci sequence with recursion
     Given I do fibonacci sequence with recursion
+
+  @java35
+  Scenario: Prime number
+    Given I check if a number is prime
