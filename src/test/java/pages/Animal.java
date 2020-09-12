@@ -32,8 +32,6 @@ public abstract class Animal {
 
     public abstract void swim();
 
-
-
     public void eat(String what) {
         System.out.println(classAndName() + " is eating " + what);
     }

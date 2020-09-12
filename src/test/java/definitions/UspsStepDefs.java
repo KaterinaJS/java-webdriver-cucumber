@@ -340,18 +340,31 @@ public class UspsStepDefs {
         assertThat(getDriver().findElement(By.xpath("//div[@class='cartridge-viewport']//span[text()='" + shape + " ']")).isDisplayed());
     }
 
-    @And("I verify that items below {int} dollars exists")
-    public void iVerifyThatItemsBelowDollarsExists(int stampCost) {
+    @And("I verify that items below {double} dollars exists")
+    public void iVerifyThatItemsBelowDollarsExists(double stampCost) {
 
 //        String price = getDriver().findElement(By.xpath("//div[contains(@class,'preview-price')]")).getText();
 //        int costs = Integer.parseInt(price.replaceAll("\\D*", ""));
 
-        By costListSelector = By.xpath("//div[contains(@class,'preview-price')]");
-        List<WebElement> costList = getDriver().findElements(costListSelector);
 
+        List<WebElement> rows = getDriver().findElements(By.xpath("//div[contains(@class,'preview-price')]"));
 
+        double lowest = Double.MAX_VALUE;
+        for(WebElement item : rows){
+            if(item.getText().length() > 8){
+                continue;
+            } else if(lowest > Double.parseDouble(item.getText().replaceAll("\\D*", ""))){
+                lowest = Double.parseDouble(item.getText().replaceAll("\\D*", ""));
+            }
+        }
+        assertThat(lowest < stampCost);
 
-
+//        for(WebElement price : priceList){
+//            System.out.println(price.getText().replaceAll("\\D*", ""));
+//            double cost = Double.parseDouble(price.getText().replaceAll("\\D*", ""));
+//            System.out.println("my answer");
+//            System.out.println(cost);
+//           assertThat(cost < stampCost);
     }
 
     @And("verify {string} service exists")
@@ -369,5 +382,12 @@ public class UspsStepDefs {
     @Then("I verify that {string} present")
     public void iVerifyThatPresent(String postOfficeName) {
         assertThat(getDriver().findElement(By.xpath("//div[@id='locationContainer_1']")).getText().contains(postOfficeName));
+    }
+
+    @And("I verify that {string} PO Box is available in {string}")
+    public void iVerifyThatPOBoxIsAvailableIn(String size, String postOffice) {
+        getDriver().findElement(By.xpath("//span[contains(text(),'Los Altos')]/../../..")).click();
+
+        assertThat(getDriver().findElement(By.xpath("//div[@class='row poLocationResults']")).getText().contains(size));
     }
 }

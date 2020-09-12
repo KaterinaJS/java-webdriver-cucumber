@@ -82,7 +82,7 @@ Feature: USPS scenarios
     And I click Blue color
     Then I verify "Blue" and "Vertical" filters
     Then I verify 12 items found
-    And I verify that items below 12 dollars exists
+    And I verify that items below 12.00 dollars exists
 
   @usps11
   Scenario: Verify location2
