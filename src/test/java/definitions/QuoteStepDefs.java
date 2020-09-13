@@ -80,4 +80,27 @@ public class QuoteStepDefs {
         assertThat(result.thirdPartyAgreementResultValue().equals("accepted")).isTrue();
 
     }
+
+    @Then("I see {string} error message {string}")
+    public void iSeeErrorMessage(String field, String error) {
+        switch (field) {
+            case "username":
+                assertThat(form.usernameErrorValue().equals(error)).isTrue();
+                break;
+            case "email":
+                assertThat(form.emailErrorValue().equals(error)).isTrue();
+                break;
+            case "password":
+                assertThat(form.passwordErrorValue().equals(error)).isTrue();
+                break;
+            case "name":
+                assertThat(form.nameErrorValue().equals(error)).isTrue();
+                break;
+            case "agreedToPrivacyPolicy":
+                assertThat(form.agreedToPrivacyPolicyErrorValue().equals(error)).isTrue();
+                break;
+            default:
+                throw new RuntimeException("Unknown field: " + field);
+        }
+    }
 }

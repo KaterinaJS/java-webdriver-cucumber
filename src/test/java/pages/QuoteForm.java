@@ -69,6 +69,21 @@ public class QuoteForm {
     @FindBy(id = "thirdPartyButton")
     private WebElement thirdPartyButton;
 
+    @FindBy(id = "username-error")
+    private WebElement usernameError;
+
+    @FindBy(id = "email-error")
+    private WebElement emailError;
+
+    @FindBy(id = "password-error")
+    private WebElement passwordError;
+
+    @FindBy(id = "name-error")
+    private WebElement nameError;
+
+    @FindBy(id = "agreedToPrivacyPolicy-error")
+    private WebElement agreedToPrivacyPolicyError;
+
 
 
     // constructor
@@ -157,6 +172,26 @@ public class QuoteForm {
     public void clickThirdPartyButton() {
         thirdPartyButton.click();
         getDriver().switchTo().alert().accept();
+    }
+
+    public String usernameErrorValue() {
+        return usernameError.getText();
+    }
+
+    public String emailErrorValue() {
+        return emailError.getText();
+    }
+
+    public String passwordErrorValue() {
+        return passwordError.getText();
+    }
+
+    public String nameErrorValue() {
+        return nameError.getText();
+    }
+
+    public String agreedToPrivacyPolicyErrorValue() {
+        return agreedToPrivacyPolicyError.getText();
     }
 
 }
