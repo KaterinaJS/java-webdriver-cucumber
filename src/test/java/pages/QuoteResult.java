@@ -33,6 +33,31 @@ public class QuoteResult {
     @FindBy(name="lastName")
     private WebElement lastNameResult;
 
+    @FindBy(name="phone")
+    private WebElement phoneResult;
+
+    @FindBy(name="dateOfBirth")
+    private WebElement dateOfBirthResult;
+
+    @FindBy(name="countryOfOrigin")
+    private WebElement countryResult;
+
+    @FindBy(name="gender")
+    private WebElement genderResult;
+
+    @FindBy(name="allowedToContact")
+    private WebElement allowedToContactResult;
+
+    @FindBy(name="address")
+    private WebElement addressResult;
+
+    @FindBy(name="carMake")
+    private WebElement carMakeResult;
+
+    @FindBy(name="thirdPartyAgreement")
+    private WebElement thirdPartyAgreementResult;
+
+
     public String usernameValue() {
         return usernameResult.getText();
     }
@@ -60,5 +85,39 @@ public class QuoteResult {
     public String lastNameValue() {
        return lastNameResult.getText();
     }
+
+    public String phoneValue() {
+        return phoneResult.getText();
+    }
+
+    public String dateOfBirthValue() {
+        return dateOfBirthResult.getText();
+    }
+
+    public String countryValue() {
+        return countryResult.getText();
+    }
+
+    public String genderValue() {
+        return genderResult.getText();
+    }
+
+    public String allowedToContactValue() {
+        return allowedToContactResult.getText();
+    }
+
+    public String addressValue() {
+        return addressResult.getText();
+    }
+
+    public String carValue() {
+        return carMakeResult.getText();
+    }
+
+    public String thirdPartyAgreementResultValue() {
+        return thirdPartyAgreementResult.getText();
+    }
+
+
 
 }

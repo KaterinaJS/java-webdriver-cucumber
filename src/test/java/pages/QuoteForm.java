@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import static support.TestContext.getDriver;
 
@@ -43,6 +44,32 @@ public class QuoteForm {
 
     @FindBy(id = "formSubmit")
     private WebElement submit;
+
+    @FindBy(name = "phone")
+    private WebElement phone;
+
+    @FindBy(id = "dateOfBirth")
+    private WebElement dateOfBirth;
+
+    @FindBy(name = "countryOfOrigin")
+    private WebElement country;
+
+    @FindBy(xpath = "//input[@value='male']")
+    private WebElement gender;
+
+    @FindBy(name = "allowedToContact")
+    private WebElement allowedToContact;
+
+    @FindBy(id = "address")
+    private WebElement address;
+
+    @FindBy(name = "carMake")
+    private WebElement carMake;
+
+    @FindBy(id = "thirdPartyButton")
+    private WebElement thirdPartyButton;
+
+
 
     // constructor
 
@@ -86,6 +113,50 @@ public class QuoteForm {
 
     public void submit() {
         submit.click();
+    }
+
+    public void fillPhone(String value) {
+        phone.sendKeys(value);
+    }
+
+    public void fillDateOfBirth(String month, String year, String date) {
+        dateOfBirth.click();
+        Select selectMonth = new Select(getDriver().findElement(By.xpath("//select[@class='ui-datepicker-month']")));
+        selectMonth.selectByValue(month);
+
+        Select selectYear = new Select(getDriver().findElement(By.xpath("//select[@class='ui-datepicker-year']")));
+        selectYear.selectByValue(year);
+
+        getDriver().findElement(By.xpath("//td[@data-handler='selectDay']/a[text()='" + date + "']")).click();
+    }
+
+    public void fillCountry(String value) {
+        Select selectCountry = new Select(country);
+        selectCountry.selectByValue(value);
+    }
+
+    public void clickGender() {
+        gender.click();
+    }
+
+    public void clickAllowedToContact() {
+        if (!allowedToContact.isSelected()) {
+            allowedToContact.click();
+        }
+    }
+
+    public void fillAddress(String value) {
+        address.sendKeys(value);
+    }
+
+    public void fillCarMake(String value) {
+        Select selectCar = new Select(carMake);
+        selectCar.selectByValue(value);
+    }
+
+    public void clickThirdPartyButton() {
+        thirdPartyButton.click();
+        getDriver().switchTo().alert().accept();
     }
 
 }
