@@ -155,7 +155,7 @@ public class QuoteStepDefs {
 
     @Then("I verify {string} field value {string}")
     public void iVerifyFieldValue(String field, String value) {
-        assertThat(form.getName().equals(value)).isTrue();
+        assertThat(form.getName()).isEqualTo(value);
     }
 
     @When("I fill out name field with first name {string}, middle name {string}, last name {string}")

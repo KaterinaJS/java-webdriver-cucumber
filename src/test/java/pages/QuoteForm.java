@@ -27,16 +27,16 @@ public class QuoteForm {
     @FindBy(id = "confirmPassword")
     private WebElement confirmPassword;
 
-    @FindBy(name = "name")
+    @FindBy(id = "name")
     private WebElement name;
 
-    @FindBy(name = "firstName")
+    @FindBy(id = "firstName")
     private WebElement firstName;
 
-    @FindBy(name = "lastName")
+    @FindBy(id = "lastName")
     private WebElement lastName;
 
-    @FindBy(name = "middleName")
+    @FindBy(id = "middleName")
     private WebElement middleName;
 
     @FindBy(xpath = "//span[text()='Save']")
