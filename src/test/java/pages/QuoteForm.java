@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-import static support.TestContext.getDriver;
+import static support.TestContext.*;
 
 public class QuoteForm {
 
@@ -15,16 +15,16 @@ public class QuoteForm {
     private String url;
     private String title;
 
-    @FindBy(name = "username")
+    @FindBy(xpath = "//input[@name='username']")
     private WebElement username;
 
-    @FindBy(name = "email")
+    @FindBy(xpath = "//input[@name='email']")
     private WebElement email;
 
-    @FindBy(name = "password")
+    @FindBy(id = "password")
     private WebElement password;
 
-    @FindBy(name = "confirmPassword")
+    @FindBy(id = "confirmPassword")
     private WebElement confirmPassword;
 
     @FindBy(name = "name")
@@ -35,6 +35,9 @@ public class QuoteForm {
 
     @FindBy(name = "lastName")
     private WebElement lastName;
+
+    @FindBy(name = "middleName")
+    private WebElement middleName;
 
     @FindBy(xpath = "//span[text()='Save']")
     private WebElement saveButton;
@@ -78,6 +81,9 @@ public class QuoteForm {
     @FindBy(id = "password-error")
     private WebElement passwordError;
 
+    @FindBy(id = "confirmPassword-error")
+    private WebElement confirmPasswordError;
+
     @FindBy(id = "name-error")
     private WebElement nameError;
 
@@ -101,6 +107,7 @@ public class QuoteForm {
     }
 
     public void fillUsername(String value) {
+        username.clear();
         username.sendKeys(value);
     }
 
@@ -113,9 +120,28 @@ public class QuoteForm {
         confirmPassword.sendKeys(value);
     }
 
+    public void fillPassword(String value) {
+        password.clear();
+        password.sendKeys(value);
+    }
+
+    public void fillConfirmPassword(String value) {
+        confirmPassword.clear();
+        confirmPassword.sendKeys(value);
+    }
+
+
     public void fillName(String firstNameValue, String lastNameValue) {
         name.click();
         firstName.sendKeys(firstNameValue);
+        lastName.sendKeys(lastNameValue);
+        saveButton.click();
+    }
+
+    public void fillFullName(String firstNameValue, String middleNameValue, String lastNameValue) {
+        name.click();
+        firstName.sendKeys(firstNameValue);
+        middleName.sendKeys(middleNameValue);
         lastName.sendKeys(lastNameValue);
         saveButton.click();
     }
@@ -186,6 +212,10 @@ public class QuoteForm {
         return passwordError.getText();
     }
 
+    public String confirmPasswordErrorValue() {
+        return confirmPasswordError.getText();
+    }
+
     public String nameErrorValue() {
         return nameError.getText();
     }
@@ -193,5 +223,10 @@ public class QuoteForm {
     public String agreedToPrivacyPolicyErrorValue() {
         return agreedToPrivacyPolicyError.getText();
     }
+
+    public String getName(){
+        return name.getAttribute("value");
+    }
+
 
 }

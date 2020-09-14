@@ -10,6 +10,7 @@ import pages.QuoteResult;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static support.TestContext.getActions;
 import static support.TestContext.getData;
 
 public class QuoteStepDefs {
@@ -93,6 +94,9 @@ public class QuoteStepDefs {
             case "password":
                 assertThat(form.passwordErrorValue().equals(error)).isTrue();
                 break;
+            case "confirmPassword":
+                assertThat(form.confirmPasswordErrorValue().equals(error)).isTrue();
+                break;
             case "name":
                 assertThat(form.nameErrorValue().equals(error)).isTrue();
                 break;
@@ -102,5 +106,60 @@ public class QuoteStepDefs {
             default:
                 throw new RuntimeException("Unknown field: " + field);
         }
+    }
+
+    @When("I fill out {string} field with {string}")
+    public void iFillOutFieldWith(String field, String text) {
+        switch (field) {
+            case "username":
+                form.fillUsername(text);
+                break;
+            case "email":
+                form.fillEmail(text);
+                break;
+            case "password":
+                form.fillPassword(text);
+                break;
+            case "confirmPassword":
+                form.fillConfirmPassword(text);
+                break;
+            default:
+                throw new RuntimeException("Unknown field: " + field);
+        }
+    }
+
+    @Then("I don't see {string} error message")
+    public void iDonTSeeErrorMessage(String field) {
+        switch (field) {
+            case "username":
+                assertThat(form.usernameErrorValue().isEmpty()).isTrue();
+                break;
+            case "email":
+                assertThat(form.emailErrorValue().isEmpty()).isTrue();
+                break;
+            case "password":
+                assertThat(form.passwordErrorValue().isEmpty()).isTrue();
+                break;
+            case "confirmPassword":
+                assertThat(form.confirmPasswordErrorValue().isEmpty()).isTrue();
+                break;
+            default:
+                throw new RuntimeException("Unknown field: " + field);
+        }
+    }
+
+    @When("I fill out name field with first name {string} and last name {string}")
+    public void iFillOutNameFieldWithFirstNameAndLastName(String firstName, String lastName) {
+        form.fillName(firstName, lastName);
+    }
+
+    @Then("I verify {string} field value {string}")
+    public void iVerifyFieldValue(String field, String value) {
+        assertThat(form.getName().equals(value)).isTrue();
+    }
+
+    @When("I fill out name field with first name {string}, middle name {string}, last name {string}")
+    public void iFillOutNameFieldWithFirstNameMiddleNameLastName(String firstName, String middleName, String lastName) {
+        form.fillFullName(firstName,middleName,lastName);
     }
 }
