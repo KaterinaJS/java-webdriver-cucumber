@@ -32,3 +32,7 @@ Feature: Tasks from Codewars
   @task8
   Scenario: Sum of numbers
     Given I solve task sum of numbers from zero to N
+
+  @task9
+  Scenario: Return length of longer string
+    Given I return length of longer string

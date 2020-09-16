@@ -226,6 +226,22 @@ public class TasksStepDefs {
             res = "0=0";
         } return res;
     }
+
+    @Given("I return length of longer string")
+    public void iReturnLengthOfLongerString() {
+        String str = "I am a Java developer";
+        System.out.println(findLongest(str));
+    }
+
+    public static int findLongest(final String str){
+        String[] spl = str.split(" ");
+        int longest = 0;
+        for (int i = 0; i < spl.length; i++) {
+            if (spl[i].length() > longest) {
+                longest = spl[i].length();
+            }
+        } return longest;
+    }
 }
 
 
