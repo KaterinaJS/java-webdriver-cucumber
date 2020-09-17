@@ -6,11 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import static support.TestContext.getDriver;
 
-public class QuoteResult {
-
-    public QuoteResult() {
-        PageFactory.initElements(getDriver(), this);
-    }
+public class QuoteResult extends Page {
 
     @FindBy(name="username")
     private WebElement usernameResult;
@@ -54,8 +50,20 @@ public class QuoteResult {
     @FindBy(name="carMake")
     private WebElement carMakeResult;
 
+    @FindBy(name="contactPersonPhone")
+    private WebElement contactPersonPhone;
+
+    @FindBy(name="contactPersonName")
+    private WebElement contactPersonName;
+
     @FindBy(name="thirdPartyAgreement")
     private WebElement thirdPartyAgreementResult;
+
+    @FindBy(xpath = "//b[@name='agreedToPrivacyPolicy']")
+    private WebElement agreedToPrivacyPolicy;
+
+    @FindBy(xpath = "//b[@name='allowedToContact']")
+    private WebElement allowedToContact;
 
 
     public String usernameValue() {
@@ -114,8 +122,24 @@ public class QuoteResult {
         return carMakeResult.getText();
     }
 
+    public String contactNameValue() {
+        return contactPersonName.getText();
+    }
+
+    public String contactPhoneValue() {
+        return contactPersonPhone.getText();
+    }
+
     public String thirdPartyAgreementResultValue() {
         return thirdPartyAgreementResult.getText();
+    }
+
+    public boolean isAgreedToPrivacyPolicy() {
+        return Boolean.parseBoolean(agreedToPrivacyPolicy.getText());
+    }
+
+    public boolean isAllowedToContact() {
+        return Boolean.parseBoolean(allowedToContact.getText());
     }
 
 

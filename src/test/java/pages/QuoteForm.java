@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -8,12 +9,16 @@ import org.openqa.selenium.support.ui.Select;
 
 import static support.TestContext.*;
 
-public class QuoteForm {
+public class QuoteForm extends Page {
 
-    // fields
+    // constructor
 
-    private String url;
-    private String title;
+    public QuoteForm() {
+        PageFactory.initElements(getDriver(), this);
+        url = "https://skryabin.com/market/quote.html";
+        title = "Get a Quote";
+    }
+
 
     @FindBy(xpath = "//input[@name='username']")
     private WebElement username;
@@ -90,20 +95,34 @@ public class QuoteForm {
     @FindBy(id = "agreedToPrivacyPolicy-error")
     private WebElement agreedToPrivacyPolicyError;
 
+// additional info iFrame
 
+    @FindBy(name = "additionalInfo")
+    private WebElement additionalInfoFrame;
+    @FindBy(id = "contactPersonName")
+    private WebElement contactPersonName;
+    @FindBy(id = "contactPersonPhone")
+    private WebElement contactPersonPhone;
 
-    // constructor
-
-    public QuoteForm() {
-        PageFactory.initElements(getDriver(), this);
-        url = "https://skryabin.com/market/quote.html";
-        title = "Get a Quote";
+    // dynamic field
+    private WebElement errorElement(String fieldName) {
+        return getDriver().findElement(By.id(fieldName + "-error"));
     }
 
     // methods
 
-    public void open() {
-        getDriver().get(url);
+    public String getErrorFieldText(String fieldName) {
+        return errorElement(fieldName).getText();
+    }
+
+    public boolean isErrorFieldDisplayed(String fieldName) {
+        boolean isDisplayed;
+        try {
+            isDisplayed = errorElement(fieldName).isDisplayed();
+        } catch (NoSuchElementException e) {
+            isDisplayed = false;
+        }
+        return isDisplayed;
     }
 
     public void fillUsername(String value) {
@@ -228,5 +247,41 @@ public class QuoteForm {
         return name.getAttribute("value");
     }
 
+    public void fillContactInfo(String nameValue, String phoneValue) {
+        getDriver().switchTo().frame(additionalInfoFrame);
+        contactPersonName.sendKeys(nameValue);
+        contactPersonPhone.sendKeys(phoneValue);
+        getDriver().switchTo().defaultContent();
+    }
+
+    // form Slava
+   /* public void fillName(String firstNameValue, String lastNameValue) {
+        name.click();
+        firstName.sendKeys(firstNameValue);
+        lastName.sendKeys(lastNameValue);
+        saveButton.click();
+        assertThat(name.getAttribute("value")).isEqualTo(firstNameValue + " " + lastNameValue);
+    }
+
+    public void fillName(String firstNameValue, String middleNameValue, String lastNameValue) {
+        name.click();
+        firstName.sendKeys(firstNameValue);
+        middleName.sendKeys(middleNameValue);
+        lastName.sendKeys(lastNameValue);
+        saveButton.click();
+        assertThat(name.getAttribute("value")).isEqualTo(firstNameValue + " " + middleNameValue + " " + lastNameValue);
+    } */
+
+    public void checkWithPrivacyPolicy() {
+        if (!privacy.isSelected()) {
+            privacy.click();
+        }
+    }
+
+    public void uncheckPrivacyPolicy() {
+        if (privacy.isSelected()) {
+            privacy.click();
+        }
+    }
 
 }

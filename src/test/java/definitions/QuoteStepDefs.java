@@ -37,7 +37,7 @@ public class QuoteStepDefs {
         form.fillBothPasswords(user.get("password"));
         form.fillName(user.get("firstName"), user.get("lastName"));
 //        form.agreeWithPrivacyPolicy();
-//        form.checkWithPrivacyPolicy();
+        form.checkWithPrivacyPolicy();
     }
 
     @And("I submit the form oop")
@@ -53,13 +53,16 @@ public class QuoteStepDefs {
         assertThat(result.emailValue().equals(user.get("email"))).isTrue();
         assertThat(result.nameValue().equals(user.get("name"))).isTrue();
         assertThat(result.passwordValue().contains(user.get("password"))).isFalse();
-        assertThat(result.agreedToPrivacyPolicyResultValue().equals("true")).isTrue();
+        assertThat(result.passwordValue().equals("[entered]")).isTrue();
+//        assertThat(result.agreedToPrivacyPolicyResultValue().equals("true")).isTrue();
+        assertThat(result.isAgreedToPrivacyPolicy()).isTrue();
         assertThat(result.firstNameValue().equals(user.get("firstName"))).isTrue();
         assertThat(result.lastNameValue().equals(user.get("lastName"))).isTrue();
     }
 
     @When("I fill out optional fields for {string} oop")
     public void iFillOutOptionalFieldsForOop(String role) {
+        Map<String, String> user = getData(role);
         form.fillPhone("1234567890");
         form.fillDateOfBirth("8", "1990", "14");
         form.fillCountry("Canada");
@@ -68,10 +71,13 @@ public class QuoteStepDefs {
         form.fillAddress("1900 First st., Palo Alto, CA");
         form.fillCarMake("Toyota");
         form.clickThirdPartyButton();
+        form.fillContactInfo(user.get("contactPersonName"), user.get("contactPersonPhone"));
     }
 
     @Then("I verify optional fields for {string} oop")
     public void iVerifyOptionalFieldsForOop(String role) {
+        Map<String, String> user = getData(role);
+
         assertThat(result.phoneValue().equals("1234567890")).isTrue();
         assertThat(result.dateOfBirthValue().equals("09/14/1990")).isTrue();
         assertThat(result.countryValue().equals("Canada")).isTrue();
@@ -80,6 +86,9 @@ public class QuoteStepDefs {
         assertThat(result.addressValue().equals("1900 First st., Palo Alto, CA")).isTrue();
         assertThat(result.carValue().equals("Toyota")).isTrue();
         assertThat(result.thirdPartyAgreementResultValue().equals("accepted")).isTrue();
+
+        assertThat(result.contactNameValue()).contains(user.get("contactPersonName"));
+        assertThat(result.contactPhoneValue()).contains(user.get("contactPersonPhone"));
 
     }
 
@@ -130,8 +139,8 @@ public class QuoteStepDefs {
     }
 
     @Then("I don't see {string} error message")
-    public void iDonTSeeErrorMessage(String field) {
-        switch (field) {
+    public void iDonTSeeErrorMessage(String errorField) {
+        switch (errorField) {
             case "username":
                 assertThat(form.usernameErrorValue().isEmpty()).isTrue();
                 break;
@@ -145,8 +154,10 @@ public class QuoteStepDefs {
                 assertThat(form.confirmPasswordErrorValue().isEmpty()).isTrue();
                 break;
             default:
-                throw new RuntimeException("Unknown field: " + field);
+                throw new RuntimeException("Unknown field: " + errorField);
         }
+
+        assertThat(form.isErrorFieldDisplayed(errorField)).isFalse();
     }
 
     @When("I fill out name field with first name {string} and last name {string}")
