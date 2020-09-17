@@ -36,7 +36,8 @@ public class QuoteStepDefs {
         form.fillEmail(user.get("email"));
         form.fillBothPasswords(user.get("password"));
         form.fillName(user.get("firstName"), user.get("lastName"));
-        form.agreeWithPrivacyPolicy();
+//        form.agreeWithPrivacyPolicy();
+//        form.checkWithPrivacyPolicy();
     }
 
     @And("I submit the form oop")

@@ -4,3 +4,5 @@ password: welcome
 firstName: Richard
 lastName: Roe
 name: Richard Roe
+contactPersonName: John Doe
+contactPersonPhone: "0987654321"

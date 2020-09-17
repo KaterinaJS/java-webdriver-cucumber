@@ -2,11 +2,15 @@
 Feature: Quote OOP
 
   @quote1
-  Scenario: Required fields for quote oop
+  Scenario Outline: Required fields for quote oop
     Given I open "quote" page
-    When I fill out required fields for "user" oop
+    When I fill out required fields for "<role>" oop
     And I submit the form oop
-    Then I verify required fields for "user" oop
+    Then I verify required fields for "<role>" oop
+    Examples:
+      | role  |
+      | user  |
+      | admin |
 
   @quote2
   Scenario: Required and optional fields for quote oop
