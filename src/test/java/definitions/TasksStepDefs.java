@@ -31,6 +31,7 @@ public class TasksStepDefs {
 
     @Given("I fix string case")
     public void iFixStringCase() {
+
         /* you will be given a string that may have mixed uppercase and lowercase letters
         and your task is to convert that string to either lowercase only or uppercase only based on:
         - make as few changes as possible.
@@ -69,6 +70,7 @@ public class TasksStepDefs {
 
     @Given("I reverse a part of a string")
     public void iReverseAPartOfAString() {
+
         /* you will be given a string and two indexes (a and b).
         Your task is to reverse the portion of that string between those two indices inclusive.
         Input will be lowercase and uppercase letters only.
@@ -102,6 +104,7 @@ public class TasksStepDefs {
 
     @Given("I calculate doubles")
     public void iCalculateDoubles() {
+
         /* Write a function called calculate that takes 3 values. The first and third values are numbers.
         The second value is a character. If the character is "+" , "-", "*", or "/",
         the function will return the result of the corresponding mathematical function on the two numbers.
@@ -144,6 +147,7 @@ public class TasksStepDefs {
 
     @Given("I calculate doubles second version")
     public void iCalculateDoublesSecondVersion() {
+
         /* Write a function called calculate that takes 3 values. The first and third values are numbers.
         The second value is a character. If the character is "+" , "-", "*", or "/",
         the function will return the result of the corresponding mathematical function on the two numbers.
@@ -168,6 +172,7 @@ public class TasksStepDefs {
 
     @Given("I solve task about greeting")
     public void iSolveTaskAboutGreeting() {
+
         /* Write a method that takes one argument as name and then greets that name, capitalized and ends with an exclamation point.
         1. "riley" --> "Hello Riley!"
         2. "JACK"  --> "Hello Jack!" */
@@ -196,6 +201,7 @@ public class TasksStepDefs {
 
     @Given("I solve task sum of numbers from zero to N")
     public void iSolveTaskSumOfNumbersFromZeroToN() {
+
         /* We want to generate a function that computes the series starting from 0 and ending
         until the given number.
         1. 6 -> "0+1+2+3+4+5+6 = 21"
@@ -246,6 +252,11 @@ public class TasksStepDefs {
 
     @Given("I merge sorted integer arrays \\(without duplicates)")
     public void iMergeSortedIntegerArraysWithoutDuplicates() {
+
+        /* Write a function that merges two sorted arrays into a single one.
+        The arrays only contain integers. Also, the final outcome must be sorted
+        and not have any duplicate. */
+
         int[] first = {2, 4, 8, 1};
         int[] second = {2, 4, 6};
         System.out.println(Arrays.toString(mergeArrays(first, second)));
