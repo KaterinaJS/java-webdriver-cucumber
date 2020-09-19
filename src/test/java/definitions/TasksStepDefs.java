@@ -3,6 +3,7 @@ package definitions;
 import cucumber.api.java.en.Given;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class TasksStepDefs {
     @Given("I solve task with Alternate case")
@@ -241,6 +242,17 @@ public class TasksStepDefs {
                 longest = spl[i].length();
             }
         } return longest;
+    }
+
+    @Given("I merge sorted integer arrays \\(without duplicates)")
+    public void iMergeSortedIntegerArraysWithoutDuplicates() {
+        int[] first = {2, 4, 8, 1};
+        int[] second = {2, 4, 6};
+        System.out.println(Arrays.toString(mergeArrays(first, second)));
+    }
+
+    public static int[] mergeArrays(int[] first, int[] second) {
+        return IntStream.concat(IntStream.of(first),IntStream.of(second)).distinct().sorted().toArray();
     }
 }
 

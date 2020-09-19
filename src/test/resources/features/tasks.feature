@@ -36,3 +36,7 @@ Feature: Tasks from Codewars
   @task9
   Scenario: Return length of longer string
     Given I return length of longer string
+
+  @task10
+  Scenario: Merging sorted integer arrays (without duplicates)
+    Given I merge sorted integer arrays (without duplicates)
