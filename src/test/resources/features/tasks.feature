@@ -40,3 +40,7 @@ Feature: Tasks from Codewars
   @task10
   Scenario: Merging sorted integer arrays (without duplicates)
     Given I merge sorted integer arrays (without duplicates)
+
+  @task11
+  Scenario: Sort a List
+    Given I sort a list

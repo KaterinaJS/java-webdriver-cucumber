@@ -2,7 +2,10 @@ package definitions;
 
 import cucumber.api.java.en.Given;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class TasksStepDefs {
@@ -264,6 +267,22 @@ public class TasksStepDefs {
 
     public static int[] mergeArrays(int[] first, int[] second) {
         return IntStream.concat(IntStream.of(first),IntStream.of(second)).distinct().sorted().toArray();
+    }
+
+    @Given("I sort a list")
+    public void iSortAList() {
+
+        /* HELP! Jason can't find his textbook! It is two days before the test date,
+        and Jason's textbooks are all out of order! Help him sort a list (ArrayList in java)
+        full of textbooks by subject, so he can study before the test.*/
+
+        String[] text = {"D", "A", "C", "B"};
+        System.out.println(sort(Arrays.asList(text)));
+    }
+
+    public static List<String> sort(List<String> textbooks) {
+        Collections.sort(textbooks, String.CASE_INSENSITIVE_ORDER);
+        return textbooks;
     }
 }
 
