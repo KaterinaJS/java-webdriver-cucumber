@@ -99,3 +99,15 @@ Feature: USPS scenarios
     And I reserve new PO box for "94022"
     Then I verify that "Los Altos — Post Office™" present
     And I verify that "Size 5-XL" PO Box is available in "Los Altos — Post Office™"
+
+  @usps13
+  Scenario Outline: Validate ZIP code OOP
+    Given I open "usps" page
+    When I go to Lookup ZIP page by address OOP
+    And I fill out "<street>" street, "<city>" city, "<state>" state OOP
+    Then I validate "<zip>" zip code exists in the result OOP
+    Examples:
+      | street              | city      | state | zip   |
+      | 4970 El Camino Real | Los Altos | CA    | 94022 |
+#      | 11 Wall st          | New York  | NY    | 10005 |
+#      | 111 S Michigan Ave  | Chicago   | IL    | 60603 |
