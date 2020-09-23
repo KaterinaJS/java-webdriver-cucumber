@@ -44,3 +44,7 @@ Feature: Tasks from Codewars
   @task11
   Scenario: Sort a List
     Given I sort a list
+
+  @task12
+  Scenario: Triple trouble
+    Given I return a string that combines all of the letters of the three strings in groups

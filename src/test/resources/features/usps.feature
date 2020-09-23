@@ -109,5 +109,5 @@ Feature: USPS scenarios
     Examples:
       | street              | city      | state | zip   |
       | 4970 El Camino Real | Los Altos | CA    | 94022 |
-#      | 11 Wall st          | New York  | NY    | 10005 |
-#      | 111 S Michigan Ave  | Chicago   | IL    | 60603 |
+      | 11 Wall st          | New York  | NY    | 10005 |
+      | 111 S Michigan Ave  | Chicago   | IL    | 60603 |
