@@ -3,26 +3,38 @@ package definitions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.api.java8.Th;
 import org.assertj.core.data.Percentage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.html5.WebStorage;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.HasTouchScreen;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.*;
+
 
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 import static support.TestContext.*;
 
 public class UspsStepDefs {
+
+    UspsHome uspsHome = new UspsHome();
+    UspsLookupByZip uspsLookupByZip = new UspsLookupByZip();
+    UspsByAddressForm uspsByAddressForm = new UspsByAddressForm();
+    UspsByAddressResult uspsByAddressResult = new UspsByAddressResult();
+    
     @When("I go to Lookup ZIP page by address")
     public void iGoToLookupZIPPageByAddress() {
         getDriver().findElement(By.xpath("//a[contains(@class,'nav-first-element')]")).click();
@@ -389,5 +401,28 @@ public class UspsStepDefs {
         getDriver().findElement(By.xpath("//span[contains(text(),'Los Altos')]/../../..")).click();
 
         assertThat(getDriver().findElement(By.xpath("//div[@class='row poLocationResults']")).getText().contains(size));
+    }
+
+    @When("I go to Lookup ZIP page by address OOP")
+    public void iGoToLookupZIPPageByAddressOOP() {
+        uspsHome.goToLookupByZip();
+        uspsLookupByZip.clickFindByAddress();
+    }
+
+    @And("I fill out {string} street, {string} city, {string} state OOP")
+    public void iFillOutStreetCityStateOOP(String street, String city, String state) {
+        uspsByAddressForm.fillStreet(street);
+        uspsByAddressForm.fillCity(city);
+        uspsByAddressForm.selectState(state);
+        uspsByAddressForm.clickFind();
+    }
+
+    @Then("I validate {string} zip code exists in the result OOP")
+    public void iValidateZipCodeExistsInTheResultOOP(String zip) {
+        String actualTotalResult = uspsByAddressResult.getSearchResult();
+        assertThat(actualTotalResult).contains(zip);
+
+        boolean areAllItemsContainZip = uspsByAddressResult.areAllResultsContainZip(zip);
+        assertThat(areAllItemsContainZip).isTrue();
     }
 }
