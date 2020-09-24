@@ -111,3 +111,11 @@ Feature: USPS scenarios
       | 4970 El Camino Real | Los Altos | CA    | 94022 |
       | 11 Wall st          | New York  | NY    | 10005 |
       | 111 S Michigan Ave  | Chicago   | IL    | 60603 |
+
+  @usps14
+  Scenario: Calculate price
+    Given I open "usps" page
+    When I go to Calculate Price Page OOP
+    And I select "Canada" with "Postcard" shape OOP
+    And I define "2" quantity OOP
+    Then I calculate the price and validate cost is "$2.40" OOP
