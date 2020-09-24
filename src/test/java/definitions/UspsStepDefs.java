@@ -34,7 +34,9 @@ public class UspsStepDefs {
     UspsLookupByZip uspsLookupByZip = new UspsLookupByZip();
     UspsByAddressForm uspsByAddressForm = new UspsByAddressForm();
     UspsByAddressResult uspsByAddressResult = new UspsByAddressResult();
-    
+    UspsCalculatePrice uspsCalculatePrice = new UspsCalculatePrice();
+    UspsCalculatePriceResult uspsCalculatePriceResult = new UspsCalculatePriceResult();
+
     @When("I go to Lookup ZIP page by address")
     public void iGoToLookupZIPPageByAddress() {
         getDriver().findElement(By.xpath("//a[contains(@class,'nav-first-element')]")).click();
@@ -424,5 +426,27 @@ public class UspsStepDefs {
 
         boolean areAllItemsContainZip = uspsByAddressResult.areAllResultsContainZip(zip);
         assertThat(areAllItemsContainZip).isTrue();
+    }
+
+    @When("I go to Calculate Price Page OOP")
+    public void iGoToCalculatePricePageOOP() {
+        uspsHome.goToCalculatePrice();
+    }
+
+    @And("I select {string} with {string} shape OOP")
+    public void iSelectWithShapeOOP(String country, String shape) {
+        uspsCalculatePrice.selectCountry(country);
+        uspsCalculatePrice.selectOption(shape);
+    }
+
+    @And("I define {string} quantity OOP")
+    public void iDefineQuantityOOP(String quantity) {
+        uspsCalculatePriceResult.inputQuantity(quantity);
+    }
+
+    @Then("I calculate the price and validate cost is {string} OOP")
+    public void iCalculateThePriceAndValidateCostIsOOP(String cost) {
+        uspsCalculatePriceResult.calculateButtonClick();
+        assertThat(uspsCalculatePriceResult.getCostValue()).isEqualTo(cost);
     }
 }

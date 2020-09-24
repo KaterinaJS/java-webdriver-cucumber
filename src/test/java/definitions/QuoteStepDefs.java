@@ -116,6 +116,9 @@ public class QuoteStepDefs {
             default:
                 throw new RuntimeException("Unknown field: " + field);
         }
+
+//        String actualError = form.getErrorFieldText(errorField);
+//        assertThat(actualError).isEqualTo(errorMessage);
     }
 
     @When("I fill out {string} field with {string}")

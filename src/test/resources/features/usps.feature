@@ -113,7 +113,7 @@ Feature: USPS scenarios
       | 111 S Michigan Ave  | Chicago   | IL    | 60603 |
 
   @usps14
-  Scenario: Calculate price
+  Scenario: Calculate price OOP
     Given I open "usps" page
     When I go to Calculate Price Page OOP
     And I select "Canada" with "Postcard" shape OOP
