@@ -17,14 +17,16 @@ public class UspsHeader extends Page {
     private WebElement calculatePrice;
 
 
-    public void goToLookupByZip() {
+    public UspsLookupByZip  goToLookupByZip() {
         mouseOver(mailAndShip);
         click(lookupByZip);
+        return new UspsLookupByZip();
     }
 
-    public void goToCalculatePrice() {
+    public UspsCalculatePrice  goToCalculatePrice() {
         mouseOver(mailAndShip);
         calculatePrice.click();
+        return new UspsCalculatePrice();
     }
 
 }

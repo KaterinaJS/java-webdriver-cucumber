@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -20,6 +21,10 @@ public class Page {
 
     public void open() {
         getDriver().get(url);
+    }
+
+    protected WebElement getByXpath(String xpath) {
+        return getDriver().findElement(By.xpath(xpath));
     }
 
     protected void mouseOver(WebElement element) {

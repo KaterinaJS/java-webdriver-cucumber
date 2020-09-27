@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import static support.TestContext.getDriver;
 
-public class UspsCalculatePrice extends UspsHeader{
+public class UspsCalculatePrice extends Page {
 
     @FindBy(id="CountryID")
     private WebElement country;

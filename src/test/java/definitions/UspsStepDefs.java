@@ -57,6 +57,8 @@ public class UspsStepDefs {
     public void iValidateZipCodeExistsInTheResult(String zip) {
         WebElement resultForm = getDriver().findElement(By.xpath("//div[@id='zipByAddressDiv']"));
         getWait().until(ExpectedConditions.textToBePresentInElement(resultForm, zip));
+//        wait.until(driver -> result.getText().length() > 0);
+//        assertThat(result.getText()).contains(zip);
 
 //        my solving
 //        String resultForm = getDriver().findElement(By.xpath("//div[@id='zipByAddressDiv']")).getText();
@@ -407,16 +409,24 @@ public class UspsStepDefs {
 
     @When("I go to Lookup ZIP page by address OOP")
     public void iGoToLookupZIPPageByAddressOOP() {
-        uspsHome.goToLookupByZip();
-        uspsLookupByZip.clickFindByAddress();
+//        uspsHome.goToLookupByZip();
+//        uspsLookupByZip.clickFindByAddress();
+
+        uspsHome.goToLookupByZip()
+                .clickFindByAddress();
     }
 
     @And("I fill out {string} street, {string} city, {string} state OOP")
     public void iFillOutStreetCityStateOOP(String street, String city, String state) {
-        uspsByAddressForm.fillStreet(street);
-        uspsByAddressForm.fillCity(city);
-        uspsByAddressForm.selectState(state);
-        uspsByAddressForm.clickFind();
+//        uspsByAddressForm.fillStreet(street);
+//        uspsByAddressForm.fillCity(city);
+//        uspsByAddressForm.selectState(state);
+//        uspsByAddressForm.clickFind();
+
+        uspsByAddressForm.fillStreet(street)
+                .fillCity(city)
+                .selectState(state)
+                .clickFind();
     }
 
     @Then("I validate {string} zip code exists in the result OOP")

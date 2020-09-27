@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class UspsCalculatePriceResult extends UspsHeader {
+public class UspsCalculatePriceResult extends Page {
 
     @FindBy(id = "quantity-0")
     private WebElement quantity;

@@ -19,20 +19,23 @@ public class UspsByAddressForm extends UspsHeader {
     private WebElement find;
 
 
-    public void fillStreet(String value) {
+    public UspsByAddressForm fillStreet(String value) {
         street.sendKeys(value);
+        return this;
     }
 
-    public void fillCity(String value) {
+    public UspsByAddressForm fillCity(String value) {
         city.sendKeys(value);
+        return this;
     }
 
     public void clickFind() {
         find.click();
     }
 
-    public void selectState(String value) {
+    public UspsByAddressForm selectState(String value) {
         new Select(state).selectByValue(value);
+        return this;
     }
 
 }
