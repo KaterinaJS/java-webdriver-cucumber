@@ -13,4 +13,16 @@ public class CareersLogin extends Page {
 
     @FindBy(id = "loginButton")
     private WebElement submitButton;
+
+    public void fillUsername(String value){
+        username.sendKeys(value);
+    }
+
+    public void fillPassword(String value){
+        password.sendKeys(value);
+    }
+
+    public void submit(){
+        submitButton.click();
+    }
 }
