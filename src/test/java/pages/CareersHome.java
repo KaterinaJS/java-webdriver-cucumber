@@ -14,11 +14,18 @@ public class CareersHome extends Page {
     @FindBy(xpath = "//span[@class='logout-box']/a")
     private WebElement userName;
 
+    @FindBy(xpath = "//a[@href='/recruit']/button")
+    private WebElement recruitButton;
+
    public void loginButtonClick(){
         click(loginButton);
    }
 
    public String getUserName(){
        return userName.getText();
+   }
+
+   public void recruitButtonClick(){
+       click(recruitButton);
    }
 }
