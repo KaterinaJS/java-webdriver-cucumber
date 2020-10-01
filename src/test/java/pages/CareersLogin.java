@@ -3,7 +3,9 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CareersLogin extends Page {
+import java.util.Map;
+
+public class CareersLogin extends CareersHeader {
 
     @FindBy(xpath = "//label[@for='loginUsername']/../input")
     private WebElement username;
@@ -26,5 +28,19 @@ public class CareersLogin extends Page {
 
     public void submit(){
         submitButton.click();
+    }
+
+    public CareersHome login(String usernameValue, String passwordValue) {
+        sendKeys(username, usernameValue);
+        sendKeys(password, passwordValue);
+        click(submitButton);
+        return new CareersHome();
+    }
+
+    public CareersHome login(Map<String, String> user) {
+        sendKeys(username, user.get("email"));
+        sendKeys(password, user.get("password"));
+        click(submitButton);
+        return new CareersHome();
     }
 }
