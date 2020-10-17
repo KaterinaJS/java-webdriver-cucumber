@@ -68,20 +68,61 @@ public class TestContext {
         return driver;
     }
 
-    public static Map<String, String> getData(String fileName) {
+    public static Map<String, String> getPosition(String title) {
+        Map<String, String> position = getData(title);
+        String timestampedTitle = position.get("title");
+        if (timestampedTitle != null) {
+            position.put("title", timestampedTitle + getTimestamp());
+        }
+
+        String dateOpen = position.get("dateOpen");
+        if (dateOpen != null) {
+            String isoDateOpen = new SimpleDateFormat("yyyy-MM-dd").format(new Date(dateOpen));
+            position.put("dateOpen", isoDateOpen);
+        }
+
+        return position;
+    }
+
+    public static File getFile(String fileName, String extension) {
+        String path = System.getProperty("user.dir") + "/src/test/resources/data/" + fileName + "." + extension;
+        return new File(path);
+    }
+
+    public static FileInputStream getStream(String fileName, String extension) {
         try {
-            String path = System.getProperty("user.dir") + "/src/test/resources/data/" + fileName + ".yml";
-            File file = new File(path);
-            InputStream stream = new FileInputStream(file);
-            Yaml yaml = new Yaml();
-            return yaml.load(stream);
-        } catch (FileNotFoundException e) {
+            return new FileInputStream(getFile(fileName, extension));
+        }  catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
+    public static Map<String, String> getCandidate(String title) {
+        Map<String, String> candidate = getCandidateData(title);
+        String email = candidate.get("email");
+        if (email != null) {
+            String[] emailPart = email.split("@");
+            email = emailPart[0] + getTimestamp() + "@" + emailPart[1];
+            candidate.put("email", email);
+        }
+        return candidate;
+    }
+
+    public static Map<String, String> getCandidateData(String title) {
+        Map<String, Map<String, String>> list = new Yaml().load(getStream("candidates", "yml"));
+        return list.get(title);
+    }
+
+    public static Config getConfig() {
+        return new Yaml().loadAs(getStream("config", "yml"), Config.class);
+    }
+
+    public static Map<String, String> getData(String fileName) {
+        return new Yaml().load(getStream(fileName, "yml"));
+    }
+
     public static WebDriverWait getWait() {
-        return getWait(5);
+        return getWait(getConfig().explicitTimeout);
     }
 
     public static WebDriverWait getWait(int timeout) {
@@ -97,7 +138,7 @@ public class TestContext {
     }
 
     public static void initialize() {
-        initialize("chrome", "local", false);
+        initialize(getConfig().browser, getConfig().testEnv, getConfig().isHeadless);
     }
 
     public static void teardown() {
